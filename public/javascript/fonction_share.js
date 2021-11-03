@@ -3,14 +3,23 @@ var urls = {
     hos : "https://public.opendatasoft.com/api/records/1.0/search/?dataset=donnees-hospitalieres-covid-19-dep-france&q=dep_code%3D88&facet=date&facet=countrycode_iso_3166_1_alpha3&facet=region_min&facet=nom_dep_min&facet=sex"
 }
 
-exports.get_dep_info(id_dep) = {
+exports.get_dep_info = function(id_dep) {
     /**
      * Permet de récupérer l'ensemble des information pour un département
      */
 };
 
-exports.parse_to(type, data) = {
+exports.parse_to(type, data) = function() {
     /**
      * Permet de renvoyer le format souhaité passé en paramètre
      */
+}
+
+exports.get_file_type_requested = function (header_object) {
+    /**
+     * Renvois un tableau contenant l'ensemble des valeurs indispensable sous forme d'un tableau
+     */
+    var language;
+    var encoding;
+    var content_type;
 }
