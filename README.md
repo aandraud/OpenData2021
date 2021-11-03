@@ -16,7 +16,7 @@ Requête 2 (sur le jeu de données sur les hospitalisations):
 Requête 3 (sur les 2 jeux de données):
 - Evolution du taux de vaccination et du taux d'hospitalisations dans le département sélectionné depuis janvier 2021.
 
-
+Requête avec toutes les données sur le département 
 
 
 ## Dev Helper
