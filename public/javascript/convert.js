@@ -1,5 +1,4 @@
 var js2xmlparser = require("js2xmlparser");
-var rdflib = require("rdflib")
 
 function convertData(data, headersTypeAcepted){
 

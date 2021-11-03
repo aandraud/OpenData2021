@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 const https = require('https');
 var negotiate = require('express-negotiate');
-var rdfTranslator = require('rdf-translator');
 /* GET home page. */
 router.get('/', function (req, res, next) {
     res.send('Bienvenue sur petits emprunts bientôt en react !');
