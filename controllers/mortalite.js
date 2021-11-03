@@ -1,5 +1,7 @@
 const functions = require('../public/javascript/fonction_share')
 const data_process = require('../public/javascript/process_data')
+const https = require('https');
+const { resolve } = require('path');
 
 exports.number_vac = (req ,res, next) => {
     var num_dep = req.params.id;
@@ -42,8 +44,43 @@ exports.test = function(req, res) {
 }
 
 exports.essaie_fonction = function(req, res){
-    data = functions.get_dep_info(34);
+    //data = functions.get_dep_info(34);
+    data = functions.getJSON(34)
     console.log("Je suis dans la fonction essaie fonction");
     console.log(data);
     res.status(200).json("Terminé")
+};
+
+exports.get_number_recall = function(req, res){
+    request_info=req.query;
+    let variable_query;
+    if(request_info.variable == '' ){
+        res.status(406).send('Rejet de la requête ! Spécifiez entre sexe = ["homme","femme"] et tous ages = ["age"]');
+    } else if(request_info.variable == "homme" || request_info.variable =="femme" ) {
+        variable_query=request_info.variable
+    } else if (request_info.variable == 'tous') {
+        variable_query = request_info.variable 
+    } else {
+        res.status(406).send('Rejet de la requête ! Spécifiez entre sexe = ["homme","femme"] et tous ages = ["age"]');
+    }
+    let id_dep = request_info.dep;
+
+    //type requêtes : département et variable label > {dep:34,variable:"sexe"}
+    let url = "https://public.opendatasoft.com/api/records/1.0/search/?dataset=covid-19-france-vaccinations-age-sexe-dep&q=(variable_label+%3D+"+variable_query+"+AND+dep_code%3D"+id_dep+")&sort=date&facet=date&facet=variable&facet=variable_label&facet=dep_name&facet=reg_code&facet=reg_name&facet=dep_area_code";
+    let http_req = https.get(url, (resp)=>{
+        let data = '';
+        resp.on('data', (chunk)=>{
+            data += chunk;
+        })
+        resp.on('end', ()=>{
+            data = JSON.parse(data)
+            console.log(data.records);
+            var global_data=data.records;
+            resolve(global_data);
+            //return global_data;
+            //res.status(200).json(data.records)
+        })
+    })
+
+    //res.status(201).send(req.query);
 }

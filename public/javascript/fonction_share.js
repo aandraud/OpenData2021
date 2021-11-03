@@ -1,9 +1,6 @@
-const { error } = require("console");
-const https = require("https");
+const { rejects } = require("assert");
+let http = require("http"),https = require("https");
 const { resolve } = require("path");
-//import fetch from "node-fetch";
-//var getJSON = require('get-json')
-const request = require('request');
 
 
 exports.get_dep_info = function(id_dep) {
@@ -14,19 +11,20 @@ exports.get_dep_info = function(id_dep) {
 
     let url = 'https://public.opendatasoft.com/api/records/1.0/search/?dataset=covid-19-france-vaccinations-age-sexe-dep&q=&sort=date&rows=1000&refine.dep_code='+id_dep;
 
-    
-    let data;
+    /*
     let options = {json: true};
 
-    let response = async request(url, options, (error, res, body) =>{
+    let response = request(url, options, (error, res, body) =>{
         if(error){
-            return error
+            resolve(error)
         } else {
-            return body;
+            console.log(body);
+            resolve(body);
         }
     })
 
     console.log(response);
+    */
     
     /*
     let req = https.get(url, function(res){
@@ -46,6 +44,7 @@ exports.get_dep_info = function(id_dep) {
         console.log(e.message);
     })
     */
+    
    /*   
     getJSON(url, function(error, response){
     console.log(response);
@@ -93,4 +92,26 @@ exports.get_file_type_requested = function (header_object) {
 
 exports.set_header = function() {
     //
+}
+
+exports.getJSON = function(option){
+    console.log('rest::getJson');
+    let req = https.get(option, (resp)=>{
+        let output = '';
+        resp.setEncoding('utf-8')
+        resp.on('data',function(chunk) {
+            output += chunk;
+        })
+        resp.on('end', () =>{
+            try {
+                let obj = JSON.parse(output);
+                resolve({
+                    statusCode : resp.statusCode,
+                    data : obj
+                });
+            } catch (err){
+                reject(err);
+            }
+        })
+    })
 }
