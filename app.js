@@ -10,6 +10,8 @@ app.get('/', function (req, res, next) {
 
 app.use("/mortalite",require('./routes/mortalite'))
 
+app.use('/vaccination', require('./routes/routes.vaccination'))
+
 app.listen(PORT, function () {
   console.log('Petits emprunts lancé sur le port :' + PORT);
 });
