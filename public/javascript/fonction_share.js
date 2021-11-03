@@ -1,4 +1,4 @@
-const http = require("https");
+const https = require("https");
 
 var urls = {
     vac : "https://public.opendatasoft.com/explore/dataset/covid-19-france-vaccinations-age-sexe-dep/table/?disjunctive.variable_label&sort=date&q=dep_code%3D34&dataChart=eyJxdWVyaWVzIjpbeyJjaGFydHMiOlt7InR5cGUiOiJsaW5lIiwiZnVuYyI6IkFWRyIsInlBeGlzIjoibl9kb3NlMSIsInNjaWVudGlmaWNEaXNwbGF5Ijp0cnVlLCJjb2xvciI6IiNGRjUxNUEifV0sInhBeGlzIjoiZGF0ZSIsIm1heHBvaW50cyI6IiIsInRpbWVzY2FsZSI6InllYXIiLCJzb3J0IjoiIiwiY29uZmlnIjp7ImRhdGFzZXQiOiJjb3ZpZC0xOS1mcmFuY2UtdmFjY2luYXRpb25zLWFnZS1zZXhlLWRlcCIsIm9wdGlvbnMiOnsiZGlzanVuY3RpdmUudmFyaWFibGVfbGFiZWwiOnRydWUsInNvcnQiOiJkYXRlIiwicSI6ImRlcF9jb2RlPTM0In19fV0sImRpc3BsYXlMZWdlbmQiOnRydWUsImFsaWduTW9udGgiOnRydWUsInRpbWVzY2FsZSI6IiJ9",
@@ -6,27 +6,24 @@ var urls = {
 }
 
 exports.get_dep_info = function(id_dep) {
-    var datas;
-    var url = 'https://public.opendatasoft.com/api/records/1.0/search/?dataset=covid-19-france-vaccinations-age-sexe-dep&q=&sort=date&rows=1000&refine.dep_code='+id_dep;
-    http.get(url, (resp)=>{
-        let data = "";
-        resp.on('data', (chunk) => {
-            data += chunk;
-        });
-        let records = []
-        data = JSON.parse(data)
-        for (let pas = 0; pas < d.records.length; pas++) {
-            records.push(data.records[pas]);
-        }
-        datas = records;
-    })
-    return datas
-
-
-    console.log(id_dep);
     /**
      * Permet de récupérer l'ensemble des information pour un département
      */
+    var url = 'https://public.opendatasoft.com/api/records/1.0/search/?dataset=covid-19-france-vaccinations-age-sexe-dep&q=&sort=date&rows=1000&refine.dep_code='+id_dep;
+
+     https.get(url, (resp) => {
+        let data = '';
+        // A chunk of data has been received.
+        resp.on('data', (chunk) => {
+          data += chunk;
+        });
+        // The whole response has been received. Print out the result.
+        resp.on('end', () => {
+          console.log(JSON.parse(data).explanation);
+        });
+      }).on("error", (err) => {
+        console.log("Error: " + err.message);
+      });
 };
 
 exports.parse_to= function(type, data) {
