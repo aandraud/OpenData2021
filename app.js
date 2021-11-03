@@ -9,6 +9,9 @@ const PORT = process.env.PORT || 3000 ;
 var indexRouter = require('./routes/index');
 app.use("/", indexRouter);
 
+app.use("/mortalite",require('./routes/mortalite'))
+
+
 // add region
 var regionRouter = require('./routes/regions');
 app.use("/regions", regionRouter)
