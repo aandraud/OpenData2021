@@ -24,3 +24,7 @@ exports.get_file_type_requested = function (header_object) {
     var encoding;
     var content_type;
 }
+
+exports.set_header = function() {
+    //
+}
