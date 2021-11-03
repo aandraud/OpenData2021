@@ -1,7 +1,7 @@
 const functions = require('../public/javascript/fonction_share')
 const data_process = require('../public/javascript/process_data')
 
-exports.number_vac = (req ,res) => {
+exports.number_vac = (req ,res, next) => {
     var num_dep = req.params.id;
     var data_set_1 = functions.get_dep_info(req.params.id);
     var data_set_2 = functions.get_dep_info(req.params.id);
@@ -37,8 +37,13 @@ exports.number_vac = (req ,res) => {
 }
 
 exports.test = function(req, res) {
-    res.send(functions.get_dep_info(34))
+    data = functions.get_dep_info(34)
+    console.log(data);
 }
 
-
-
+exports.essaie_fonction = function(req, res){
+    data = functions.get_dep_info(34);
+    console.log("Je suis dans la fonction essaie fonction");
+    console.log(data);
+    res.status(200).json("Terminé")
+}
