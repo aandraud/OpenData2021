@@ -1,4 +1,5 @@
 const functions = require('../public/javascript/fonction_share')
+const data_process = require('../public/javascript/process_data')
 
 exports.number_vac = (req ,res) => {
     var num_dep = req.params.id;
@@ -18,12 +19,22 @@ exports.number_vac = (req ,res) => {
         "link" : "http:...",
     }]
     console.log(json);
+    console.log("deb");
 
+    data_process.process_json(json, 'name')
+
+    console.log("fin");
     // Traitement
-
+    for (var [cle, valeur] of Object.entries(json)){
+        console.log(cle + ' attention ' + valeur.name);
+    }
     var json_data;
+    console.log(json.keys("name"));
+    console.log(functions.parse_to("tut","trux"));
     // Parsing
     var preference_type = functions.get_file_type_requested(req.headers);
     res.status(201).send(functions.parse_to(preference_type,json_data))
 }
+
+
 
