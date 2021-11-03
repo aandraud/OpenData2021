@@ -36,5 +36,10 @@ exports.number_vac = (req ,res) => {
     res.status(201).send(functions.parse_to(preference_type,json_data))
 }
 
+exports.test = function(req, res) {
+    console.log(functions.get_dep_info(34));
+
+}
+
 
 
