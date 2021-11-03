@@ -1,10 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const https = require("https");
-var convert = require('xml-js');
-const xml2js = require('xml2js');
 const converter = require('../public/javascript/convert')
-var js2xmlparser = require("js2xmlparser");
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -25,9 +22,9 @@ router.get('/', function (req, res, next) {
 
         resp.on('end', () => {
           
-          result = converter(data, headersTypeAcepted)
+          result = converter(data, headersTypeAcepted);
+          res.setHeader('Content-Type', result["content_type"]);
           res.status(201).send(result["data"]);
-          contentType = result["content_type"]
 
           //console.log(res.getHeader('accept'))
         })

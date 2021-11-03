@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/aandraud/OpenData2021#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "express-negotiate": "^0.0.6",
+    "js2xmlparser": "^4.0.2"
   }
 }
