@@ -1,4 +1,4 @@
-var functions = require("../public/javascript/fonction_share");
+//var functions = require("../public/javascript/fonction_share");
 
 exports.number_vac = (res, req) => {
     var num_dep = req.params.id;
