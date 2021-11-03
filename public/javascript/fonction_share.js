@@ -4,12 +4,13 @@ var urls = {
 }
 
 exports.get_dep_info = function(id_dep) {
+    console.log(id_dep);
     /**
      * Permet de récupérer l'ensemble des information pour un département
      */
 };
 
-exports.parse_to(type, data) = function() {
+exports.parse_to= function(type, data) {
     /**
      * Permet de renvoyer le format souhaité passé en paramètre
      */
