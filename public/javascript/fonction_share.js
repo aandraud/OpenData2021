@@ -1,5 +1,3 @@
-const http = require('https')
-
 exports.get_dep_info = (data) => {
     console.log(data);
 };
@@ -11,4 +9,10 @@ exports.get_open_info() => {
         data = JSON.parse(data)
         resp.status(200).send(data)
     })
+}
+
+exports.parse_to(content_type, data){
+    if
+    elif
+    else
 }
