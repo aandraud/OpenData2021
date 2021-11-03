@@ -1,4 +1,5 @@
-exports.number_vac = (res, req) => {
+exports.number_vac = (req ,res) => {
+    console.log(req.params.id);
     //console.log(req.params.ids);
     /*
     var num_dep = req.params.id;
