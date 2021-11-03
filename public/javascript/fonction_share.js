@@ -10,7 +10,11 @@ exports.get_dep_info = function(id_dep) {
      * Permet de récupérer l'ensemble des information pour un département
      */
     var url = 'https://public.opendatasoft.com/api/records/1.0/search/?dataset=covid-19-france-vaccinations-age-sexe-dep&q=&sort=date&rows=1000&refine.dep_code='+id_dep;
-    
+
+    console.log(url);
+    https.get(url,resp =>{
+        return resp
+    })
 };
 
 exports.parse_to= function(type, data) {

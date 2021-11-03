@@ -37,8 +37,7 @@ exports.number_vac = (req ,res) => {
 }
 
 exports.test = function(req, res) {
-    console.log(functions.get_dep_info(34));
-
+    res.send(functions.get_dep_info(34))
 }
 
 
