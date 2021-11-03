@@ -18,5 +18,13 @@ exports.number_vac = (req ,res) => {
         "link" : "http:...",
     }]
     console.log(json);
+
+    // Traitement
+
+    json_data;
+    // Parsing
+    preference_type = functions.get_file_type_requested(req.headers);
+    res.status(201).send(functions.parse_to(preference_type,json_data))
+
 }
 
