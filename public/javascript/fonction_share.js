@@ -1,7 +1,7 @@
 const http = require('https')
 
-exports.get_dep_info = (res, req) => {
-    console.log('fonction_get_info');
+exports.get_dep_info = (data) => {
+    console.log(data);
 };
 
 exports.get_open_info() => {
