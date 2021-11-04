@@ -23,4 +23,19 @@ function convertData(data, headersTypeAcepted){
     return {"data":newData, "content_type":contentType}
 };
 
+
+exports.vaccination_to_RDF = function (data){
+  body = `<igeo:Departement igeo:codeDepartement=${data["dep_code"]} igeo:nom=${data["nom_dep_min"]}>
+  <covidstats:has_statistique>
+    <covidstats:Count dcat:keyword=vaccination covidstats:dateEffet=${data["date"]} covidstats:has_count=${data["num_complet"]} />
+    <covidstats:Taux dcat:keyword=vaccination covidstats:dateEffet=
+  </has_statistique>
+  </Departement>`
+
+  var rdf = `<rdf:RDF xlmns:rdf='https:' xlmns:igeo='http://rdf.insee.fr/def/geo# xlmns:covidstats='http://'>
+  ${body}</rdf>`
+
+
+}
+
 module.exports = convertData
