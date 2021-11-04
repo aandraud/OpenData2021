@@ -2,6 +2,18 @@ const functions = require('../public/javascript/fonction_share')
 const data_process = require('../public/javascript/process_data')
 const https = require('https');
 
+exports.test_promise_1 =async function(req, res){
+    var json = { "type": "string" };
+    let result = await functions.parse_to(json);
+    console.log("Resultat de la fonction", result);
+}
+
+exports.test_promise_2 =async function(){
+    let result = await functions.get_json(34);
+    console.log(result);
+    //console.log("Resultat de la fonction", result);
+}
+
 exports.get_number_recall = function(req, res){
     // configuration Header
     set_content_type = 'json'
