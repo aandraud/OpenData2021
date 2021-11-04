@@ -3,31 +3,38 @@ let http = require("http"),https = require("https");
 const { resolve } = require("path");
 let xmlJ=require('xml-js');
 
+function url_creation(req,database){
+    if(database=='vac'){
+        //return 'https://public.opendatasoft.com/api/records/1.0/search/?dataset=covid-19-france-vaccinations-age-sexe-dep&q=&sort=date&rows=1000&refine.dep_code='+req;
+        return 'https://public.opendatasoft.com/api/records/1.0/search/?dataset=donnees-hospitalieres-covid-19-dep-france&q='+req+'&facet=date&facet=countrycode_iso_3166_1_alpha3&facet=region_min&facet=nom_dep_min&facet=sex'
+    } else {
+        return 'https://public.opendatasoft.com/api/records/1.0/search/?dataset=donnees-hospitalieres-covid-19-dep-france&q=dep_code%3D'+req+'&facet=date&facet=countrycode_iso_3166_1_alpha3&facet=region_min&facet=nom_dep_min&facet=sex';
+    } 
+}
 
-exports.get_json = async function(id_dep){
-    let url = 'https://public.opendatasoft.com/api/records/1.0/search/?dataset=covid-19-france-vaccinations-age-sexe-dep&q=&sort=date&rows=1000&refine.dep_code='+id_dep;
-    console.log(url);
+exports.get_from_opendata = async function(request,database){
+    let url = url_creation(request,database);
     return new Promise((resolve)=>{
         https.get(url, res =>{
             let data = "";
             res.on('data', chunk => { data += chunk });
             res.on('end',()=>{
                 json_data = JSON.parse(data);
-                resolve(json_data["records"]);
+                resolve({statusCode : res.statusCode, data : json_data["records"]})
             })
         })
     })
 }
 
-exports.parse_to= function(data) {
+exports.parse_to= function(data, type) {
+        /**
+     * Permet de renvoyer le format souhaité passé en paramètre
+     */
     return new Promise(resolve => {
         var options = {compact: true, ignoreComment: true, spaces: 4};
         var result = xmlJ.json2xml(data, options);
         resolve(result);
     })
-    /**
-     * Permet de renvoyer le format souhaité passé en paramètre
-     */
 }
 
 
