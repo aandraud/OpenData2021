@@ -2,16 +2,22 @@ const functions = require('../public/javascript/fonction_share')
 const data_process = require('../public/javascript/process_data')
 const https = require('https');
 
-exports.test_promise_1 =async function(req, res){
-    var json = { "type": "string" };
-    let result = await functions.parse_to(json);
-    console.log("Resultat de la fonction", result);
+exports.test_promise_2 =async function(req, res){
+    console.log("Fonction : Promise 2 OK");
+    let result = await functions.get_from_opendata('(dep_code%3D'+req.query['dep']+')','vac');
+    res.status(200).send(result)
+    //console.log(result);
+    //console.log("Resultat de la fonction", result);
 }
 
-exports.test_promise_2 =async function(){
-    let result = await functions.get_json(34);
-    console.log(result);
-    //console.log("Resultat de la fonction", result);
+exports.get_number_vaccination_by_dep = async function(req, res){
+    /**
+     * Permet de récupérer les information pour tout les départements
+     */
+    let result = await functions.get_from_opendata('(dep_code%3D'+req.query['dep']+')','vac');
+    let parse = await functions.parse_to(result.data)
+    res.setHeader('Content-Type', 'text/json')
+    res.status(200).send(result)
 }
 
 exports.get_number_recall = function(req, res){

@@ -5,7 +5,9 @@ const controller=require("../controllers/controllers.vaccination");
 
 router.get('/nombre_vac/', controller.get_number_recall);
 
-router.get('/test/', controller.test_promise_1);
+router.get('/vaccination_par_dep',controller.get_number_vaccination_by_dep)
+
+router.get('/test/', controller.test_promise_2);
 
 router.get('',(req, res)=>{
     res.setHeader('Content-type','text/html')
