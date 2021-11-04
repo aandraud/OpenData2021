@@ -52,6 +52,12 @@ exports.essaie_fonction = function(req, res){
 };
 
 exports.get_number_recall = function(req, res){
+    // configuration Header
+    set_content_type = 'json'
+    res.setHeader('Content-Type', 'text/'+set_content_type);
+    console.log(req.headers['accept-language']);
+    console.log(req);
+
     request_info=req.query;
     let variable_query;
     if(request_info.variable == '' ){
@@ -74,11 +80,11 @@ exports.get_number_recall = function(req, res){
         })
         resp.on('end', ()=>{
             data = JSON.parse(data)
-            console.log(data.records);
+            //console.log(data.records);
             var global_data=data.records;
-            resolve(global_data);
+            //resolve(global_data);
             //return global_data;
-            //res.status(200).json(data.records)
+            res.status(200).json(global_data)
         })
     })
 
