@@ -21,28 +21,22 @@ exports.get_number_vaccination_by_dep = async function(req, res){
         "data" : {}
 
     }
-    console.log(json);
 
     var data_clean = result['data'].map(obj => {
         var jObjt = {}
+        jObjt['record_id']=obj.recordid
         jObjt['n_cum_d2']=obj.fields.n_cum_complet;
         jObjt['couv_complet'] = obj.fields.couv_complet;
         jObjt['date'] = obj.fields.date;
         //console.log("Nouvelle entrée", obj.fields.n_cum_rappel);
         //json["data"].push(jObjt)
-        //return jObjt;
+        return jObjt;
     })
     //json["data"].push(data_clean);
-
-    /*
-    for (let i = 0; i < data_clean.length; i++) {
-        json['data'].push(data_clean[i]);
-    }
-    */
     
 
-    //json.data=data_clean
-    console.log(json);
+    json.data=data_clean
+    console.log(json.data);
 
 
     //console.log(Object.values(Object.values(result.data)));
