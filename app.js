@@ -13,6 +13,9 @@ app.use('/vaccination', require('./routes/routes.vaccination'))
 
 app.use('/hospitalisation', require('./routes/routes.hospitalisation'))
 
+app.use('/dep', require('./routes/routes.dep'))
+
+
 
 // add region
 var regionRouter = require('./routes/regions');
