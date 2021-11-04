@@ -10,10 +10,10 @@ Nous avons 2 jeux de données sur la COVID-19 en France:
 ## Requêtes faites
 
 Requête 1 (sur le jeu de données sur les vaccinations):
-- Taux de personnes ayant un schéma vaccinal complet (couv_complet, en %) dans le département sélectionné au jour J.
+- Taux de personnes ayant un schéma vaccinal complet (couv_complet, en %) dans le département sélectionné au jour J-2.
 
 Requête 2 (sur le jeu de données sur les hospitalisations):
-- Nombre de patients en soins intensifs (day_intcare) parmi l'ensemble des patients hospitalisés (day_hosp) dans le département sélectionné au jour J.
+- Nombre de patients en soins intensifs (day_intcare) parmi l'ensemble des patients hospitalisés (day_hosp) dans le département sélectionné au jour J-2.
 
 Requête 3 (sur les 2 jeux de données):
 - Evolution du taux de vaccination et du taux d'hospitalisations dans le département sélectionné depuis janvier 2021.
