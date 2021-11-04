@@ -15,6 +15,42 @@ exports.get_number_vaccination_by_dep = async function(req, res){
      * Permet de récupérer les information pour tout les départements
      */
     let result = await functions.get_from_opendata('(dep_code%3D'+req.query['dep']+')','vac');
+    let json={
+        "dep_id":req.query['dep'],
+        "dataset_id":"covid-19-france-vaccinations-age-sexe-dep",
+        "data" : {}
+
+    }
+    console.log(json);
+
+    var data_clean = result['data'].map(obj => {
+        var jObjt = {}
+        jObjt['n_cum_d2']=obj.fields.n_cum_complet;
+        jObjt['couv_complet'] = obj.fields.couv_complet;
+        jObjt['date'] = obj.fields.date;
+        //console.log("Nouvelle entrée", obj.fields.n_cum_rappel);
+        //json["data"].push(jObjt)
+        //return jObjt;
+    })
+    //json["data"].push(data_clean);
+
+    /*
+    for (let i = 0; i < data_clean.length; i++) {
+        json['data'].push(data_clean[i]);
+    }
+    */
+    
+
+    //json.data=data_clean
+    console.log(json);
+
+
+    //console.log(Object.values(Object.values(result.data)));
+
+    //console.log(Object.values(result.data));
+    //console.log(result_data);
+
+
     let parse = await functions.parse_to(result.data,'xml')
     res.setHeader('Content-Type', 'text/json')
     res.status(200).send(result)
