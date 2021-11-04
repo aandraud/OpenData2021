@@ -11,6 +11,7 @@ app.use("/", indexRouter);
 
 app.use("/mortalite",require('./routes/mortalite'))
 
+app.use('/vaccination', require('./routes/routes.vaccination'))
 
 // add region
 var regionRouter = require('./routes/regions');

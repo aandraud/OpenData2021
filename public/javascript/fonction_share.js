@@ -1,8 +1,23 @@
-const https = require("https");
+const { rejects } = require("assert");
+let http = require("http"),https = require("https");
+const { resolve } = require("path");
+let xmlJ=require('xml-js');
 
-var urls = {
-    vac : "https://public.opendatasoft.com/explore/dataset/covid-19-france-vaccinations-age-sexe-dep/table/?disjunctive.variable_label&sort=date&q=dep_code%3D34&dataChart=eyJxdWVyaWVzIjpbeyJjaGFydHMiOlt7InR5cGUiOiJsaW5lIiwiZnVuYyI6IkFWRyIsInlBeGlzIjoibl9kb3NlMSIsInNjaWVudGlmaWNEaXNwbGF5Ijp0cnVlLCJjb2xvciI6IiNGRjUxNUEifV0sInhBeGlzIjoiZGF0ZSIsIm1heHBvaW50cyI6IiIsInRpbWVzY2FsZSI6InllYXIiLCJzb3J0IjoiIiwiY29uZmlnIjp7ImRhdGFzZXQiOiJjb3ZpZC0xOS1mcmFuY2UtdmFjY2luYXRpb25zLWFnZS1zZXhlLWRlcCIsIm9wdGlvbnMiOnsiZGlzanVuY3RpdmUudmFyaWFibGVfbGFiZWwiOnRydWUsInNvcnQiOiJkYXRlIiwicSI6ImRlcF9jb2RlPTM0In19fV0sImRpc3BsYXlMZWdlbmQiOnRydWUsImFsaWduTW9udGgiOnRydWUsInRpbWVzY2FsZSI6IiJ9",
-    hos : "https://public.opendatasoft.com/api/records/1.0/search/?dataset=donnees-hospitalieres-covid-19-dep-france&q=dep_code%3D88&facet=date&facet=countrycode_iso_3166_1_alpha3&facet=region_min&facet=nom_dep_min&facet=sex"
+
+
+exports.get_json = async function(id_dep){
+    let url = 'https://public.opendatasoft.com/api/records/1.0/search/?dataset=covid-19-france-vaccinations-age-sexe-dep&q=&sort=date&rows=1000&refine.dep_code='+id_dep;
+    console.log(url);
+    return new Promise((resolve)=>{
+        https.get(url, res =>{
+            let data = "";
+            res.on('data', chunk => { data += chunk });
+            res.on('end',()=>{
+                json_data = JSON.parse(data);
+                resolve(json_data["records"]);
+            })
+        })
+    })
 }
 
 exports.get_dep_info = function(id_dep) {
@@ -14,13 +29,17 @@ exports.get_dep_info = function(id_dep) {
     
 };
 
-exports.parse_to= function(type, data) {
-    return type, data;
+exports.parse_to= function(data) {
+    return new Promise(resolve => {
+        var options = {compact: true, ignoreComment: true, spaces: 4};
+        var result = xmlJ.json2xml(data, options);
+        resolve(result);
+    })
     /**
      * Permet de renvoyer le format souhaité passé en paramètre
      */
-    
 }
+
 
 exports.get_file_type_requested = function (header_object) {
     /**
@@ -33,4 +52,26 @@ exports.get_file_type_requested = function (header_object) {
 
 exports.set_header = function() {
     //
+}
+
+exports.getJSON = function(option){
+    console.log('rest::getJson');
+    let req = https.get(option, (resp)=>{
+        let output = '';
+        resp.setEncoding('utf-8')
+        resp.on('data',function(chunk) {
+            output += chunk;
+        })
+        resp.on('end', () =>{
+            try {
+                let obj = JSON.parse(output);
+                resolve({
+                    statusCode : resp.statusCode,
+                    data : obj
+                });
+            } catch (err){
+                reject(err);
+            }
+        })
+    })
 }

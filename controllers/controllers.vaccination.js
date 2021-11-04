@@ -1,55 +1,18 @@
 const functions = require('../public/javascript/fonction_share')
 const data_process = require('../public/javascript/process_data')
 const https = require('https');
-const { resolve } = require('path');
 
-exports.number_vac = (req ,res, next) => {
-    var num_dep = req.params.id;
-    var data_set_1 = functions.get_dep_info(req.params.id);
-    var data_set_2 = functions.get_dep_info(req.params.id);
-    // Reception de records
-    var json = [{ 
-        "id" : 5,
-        "name" : "Jemmy overy",
-        "data" : 10,
-        "link" : "http:...",
-    },
-    { 
-        "id" : 6,
-        "name" : "John Smith",
-        "data" : 12,
-        "link" : "http:...",
-    }]
-    console.log(json);
-    console.log("deb");
-
-    data_process.process_json(json, 'name')
-
-    console.log("fin");
-    // Traitement
-    for (var [cle, valeur] of Object.entries(json)){
-        console.log(cle + ' attention ' + valeur.name);
-    }
-    var json_data;
-    console.log(json.keys("name"));
-    console.log(functions.parse_to("tut","trux"));
-    // Parsing
-    var preference_type = functions.get_file_type_requested(req.headers);
-    res.status(201).send(functions.parse_to(preference_type,json_data))
+exports.test_promise_1 =async function(req, res){
+    var json = { "type": "string" };
+    let result = await functions.parse_to(json);
+    console.log("Resultat de la fonction", result);
 }
 
-exports.test = function(req, res) {
-    data = functions.get_dep_info(34)
-    console.log(data);
+exports.test_promise_2 =async function(){
+    let result = await functions.get_json(34);
+    console.log(result);
+    //console.log("Resultat de la fonction", result);
 }
-
-exports.essaie_fonction = function(req, res){
-    //data = functions.get_dep_info(34);
-    data = functions.getJSON(34)
-    console.log("Je suis dans la fonction essaie fonction");
-    console.log(data);
-    res.status(200).json("Terminé")
-};
 
 exports.get_number_recall = function(req, res){
     // configuration Header
