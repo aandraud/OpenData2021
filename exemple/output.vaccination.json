@@ -1,0 +1,34 @@
+{
+    "dep_id":34,
+    "dep_name":"dep_name",
+    "dataset_id":"covid-19-france-vaccinations-age-sexe-dep",
+    "data" : [
+        {
+            "record_timestamp" : "2021-11-04T09:30:00+00:00",
+            "field" :
+                {
+                    "num_dose1":"n_dose1",
+                    "num_dose2":"n_complet",
+                    "num_dose3":"n_rappel",
+                    "n_cum_d1":"n_cum_dose1",
+                    "n_cum_d2":"n_cum_complet",
+                    "n_cum_d3":"n_cum_rappel",
+                    "date":"date"
+                }
+        },
+        {
+            "record_timestamp" : "2021-11-04T09:30:00+00:00",
+            "field" :
+                {
+                    "num_dose1":"n_dose1",
+                    "num_dose2":"n_complet",
+                    "num_dose3":"n_rappel",
+                    "n_cum_d1":"n_cum_dose1",
+                    "n_cum_d2":"n_cum_complet",
+                    "n_cum_d3":"n_cum_rappel",
+                    "date":"date"
+                }
+
+        }
+    ]
+}
