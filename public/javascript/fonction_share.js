@@ -4,6 +4,7 @@ const { resolve } = require("path");
 let xmlJ=require('xml-js');
 
 
+
 exports.get_json = async function(id_dep){
     let url = 'https://public.opendatasoft.com/api/records/1.0/search/?dataset=covid-19-france-vaccinations-age-sexe-dep&q=&sort=date&rows=1000&refine.dep_code='+id_dep;
     console.log(url);
@@ -18,6 +19,15 @@ exports.get_json = async function(id_dep){
         })
     })
 }
+
+exports.get_dep_info = function(id_dep) {
+    /**
+     * Permet de récupérer l'ensemble des information pour un département
+     */
+    var url = 'https://public.opendatasoft.com/api/records/1.0/search/?dataset=covid-19-france-vaccinations-age-sexe-dep&q=&sort=date&rows=1000&refine.dep_code='+id_dep;
+
+    
+};
 
 exports.parse_to= function(data) {
     return new Promise(resolve => {
