@@ -6,8 +6,6 @@ const PORT = process.env.PORT || 3000 ;
 
 
 // add router
-var indexRouter = require('./routes/index');
-app.use("/", indexRouter);
 
 app.use("/mortalite",require('./routes/mortalite'))
 
