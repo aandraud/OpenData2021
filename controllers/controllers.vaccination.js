@@ -15,7 +15,7 @@ exports.get_number_vaccination_by_dep = async function(req, res){
      * Permet de récupérer les information pour tout les départements
      */
     let result = await functions.get_from_opendata('(dep_code%3D'+req.query['dep']+')','vac');
-    let parse = await functions.parse_to(result.data)
+    let parse = await functions.parse_to(result.data,'xml')
     res.setHeader('Content-Type', 'text/json')
     res.status(200).send(result)
 }
