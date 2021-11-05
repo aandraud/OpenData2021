@@ -11,7 +11,7 @@ Nous avons 2 jeux de données sur la COVID-19 en France:
 
 ### Vaccination :
 
-#### Requête : Données sur l'état de l'art du schéma vaccinal complet (2 doses) selon deux variables peuvent être selectionnées sexe et l'age
+#### Requête : Données à jour du schéma vaccinal complet (2 doses) selon deux variables peuvent être selectionnées sexe et l'age
 
 - **Exemple de la route : vaccination/vaccination_par_dep?dep=34&variable=age**
 
@@ -23,15 +23,31 @@ Paramètres :
 
 
 
+### Hospitalisation :
 
-Requête 1 (sur le jeu de données sur les vaccinations):
-- Taux de personnes ayant un schéma vaccinal complet (couv_complet, en %) dans le département sélectionné au jour J-2.
+#### Requête : Données sur le nombre de patients en soins intensifs (day_intcare) parmi l'ensemble des patients hospitalisés (day_hosp) dans le département sélectionné au jour J-2 (données les plus récentes). URL: https://opendata2021.herokuapp.com/hospitalisation/
 
-Requête 2 (sur le jeu de données sur les hospitalisations): https://opendata2021.herokuapp.com/hospitalisation/
-- Récupérer le nombre de patients en soins intensifs (day_intcare) parmi l'ensemble des patients hospitalisés (day_hosp) dans le département sélectionné au jour J-2 (données les plus récentes).
+- **Exemple de la route : hospitalisation/hospitalisation_par_dep?dep=34**
 
-Requête 3 (sur les 2 jeux de données): https://opendata2021.herokuapp.com/dep/
-- Récupérer plusieurs informations pertinentes sur les hospitalisations et la vaccination sur le département sélectionné au jour J-2 (données les plus récentes).
+Paramètres : 
+
+| Variable souhaitée | dep
+| ------- | ---
+| Paramètre | Int
+
+
+### Fusion des 2 jeux de données :
+
+#### Requête : Données pertinentes sur les hospitalisations et la vaccination sur le département sélectionné au jour J-2 (données les plus récentes). URL: https://opendata2021.herokuapp.com/dep/
+
+- **Exemple de la route : dep/dep_par_dep?dep=34**
+
+Paramètres : 
+
+| Variable souhaitée | dep
+| ------- | ---
+| Paramètre | Int
+
 
 ## Gestion des erreurs
 Pour la requête 2: 
