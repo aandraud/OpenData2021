@@ -85,7 +85,7 @@ L'erreur est attrapée et gérée par notre API en envoyant dans tous les cas un
 
 
 
-## Dévoloppement du code
-### Ajout d'une fonctionnalité
-Créer un fichier contenant une route dans le dossier route suivant le modèle index.js.
-Ajouter la route dans app.js
+## Restructuration des données reçues
+- Nettoyage des données reçues
+- Création d'un schéma et vocabulaire RDFXML
+- Type de contenu renvoyé: RDFXML, XML et JSON (par défaut)
