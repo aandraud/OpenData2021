@@ -17,15 +17,9 @@ Nous avons 2 jeux de données sur la COVID-19 en France:
 
 Paramètres : 
 
-| Variable souhaitée | Dep | Age |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| Paramètre | Int | choix(sex/age) |
-
-**| Tables | Are | Cool | |----------|:-------------:|------:| | col 1 is| left-aligned | $1600 |**
-
-| Attempt | #1  | #2  |
+| Variable souhaitée | dep | variable  |
 | ------- | --- | --- |
-| Seconds | 301 | 283 |
+| Paramètre | Int | choix(sex/age) |
 
 
 
