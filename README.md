@@ -7,14 +7,15 @@ Nous avons 2 jeux de données sur la COVID-19 en France:
 1. un premier concernant les vaccinations effectuées par département. (source: https://public.opendatasoft.com/explore/dataset/covid-19-france-vaccinations-age-sexe-dep/api/?disjunctive.variable_label&sort=date)
 2. un second concernant les hospitalisations liées à la COVID-19 par département. (source: https://public.opendatasoft.com/explore/dataset/donnees-hospitalieres-covid-19-dep-france/api/?disjunctive.countrycode_iso_3166_1_alpha3&disjunctive.nom_dep_min)
 
-Serveur de l'application = heroku
-https://opendata2021.herokuapp.com/
+Le serveur de l'application est heroku: https://opendata2021.herokuapp.com/
+
+
 
 ## Requêtes
 
 ### Vaccination :
 
-#### Requête : Données à jour du schéma vaccinal complet (2 doses) selon deux variables peuvent être selectionnées sexe et l'age
+#### Requête : Données à jour du schéma vaccinal complet (2 doses) selon deux variables sélectionnées (sexe et âge)
 
 - **Exemple de la route : vaccination/vaccination_par_dep?dep=34&variable=age**
 
@@ -23,7 +24,6 @@ Paramètres :
 | Variable souhaitée | dep | variable  |
 | ------- | --- | --- |
 | Paramètre | Int | choix(sex/age) |
-
 
 
 ### Hospitalisation :
@@ -59,7 +59,6 @@ Paramètres :
 | ------- | ---
 | Paramètre | Int
 
-
 #### Gestion Erreur
 
 L'erreur est attrapée et gérée par notre API en envoyant dans tous les cas une réponse au client :
@@ -69,12 +68,15 @@ L'erreur est attrapée et gérée par notre API en envoyant dans tous les cas un
 - dep/donnees_par_dep/?dep=34 > Affichage des données
 
 
+
 ## Modules utilisés
 
 - "express": "^4.17.1" > framework standard pour le développement de serveur en Node.js
 - "https": "^1.0.0" > permet de faire des requêtes https
 - "js2xmlparser": "^4.0.2" > permet de convertir un JSON en XML
 - "xml-js": "^1.6.11" > permet de convertir un XML en JSON
+
+
 
 ## Dévoloppement du code
 ### Ajout d'une fonctionnalité
