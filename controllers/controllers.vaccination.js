@@ -19,6 +19,7 @@ exports.get_number_vaccination_by_dep = async function(req, res){
     console.log(request);
     let result = await functions.get_from_opendata(request,'vac');
 
+    try {
     let json={
         "dep_id":req.query['dep'],
         "dataset_id":result['data'][0].datasetid,
@@ -39,6 +40,9 @@ exports.get_number_vaccination_by_dep = async function(req, res){
         return jObjt;
     });
     json['data']=data_clean;
+    } catch {
+        json=[]
+    }
 
     let parse = await functions.parse_to(json.data,'xml')
     res.setHeader('Content-Type', 'text/'+'json');
@@ -47,5 +51,5 @@ exports.get_number_vaccination_by_dep = async function(req, res){
 
 exports.get_number_vaccination_national = async function(req,res){
     let result = await functions.get_from_opendata('','vac');
-    res.status(200).send(result['data'][0].dep_name);
+    res.status(200).send(result);
 }
