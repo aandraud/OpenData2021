@@ -37,9 +37,9 @@ function to_RDF(data, reqType){
 
 function rdf (body) {
  return `<rdf:RDF 
-    xlmns:rdf='https:' 
+    xlmns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns' 
     xlmns:igeo='http://rdf.insee.fr/def/geo
-    xlmns:covidstats='http://'>
+    xlmns:covidstats=':https://opendata2021.herokuapp.com/public/rdf/rdf_vocab'>
       ${body}
     </rdf>`
 }
@@ -67,7 +67,7 @@ return rdf(body)
 hosp_vacc_to_RDF = function(resp){
 body = `  <igeo:Departement igeo:codeDepartement="${resp["dep_code"]}" igeo:nom="${resp["dep_name"]}">
 <covidstats:has_statistique>
-       <covidstats:from_url="vaccination"  >
+       <covidstats:from_url="vaccination">
             <covidstats:Count covidstats:keyword="vaccination complete" covidstats:dateEffet="${resp["date"]["date"]}" covidstats:has_count="${resp["data"]["vaccination"]["n_cum_complet"]}" />
             <covidstats:Taux covidstats:keyword="vaccination complete" covidstats:dateEffet="${resp["date"]}" covidstats:has_taux="${resp["data"]["vaccination"]["couv_complet"]}" />
         </covidstats:from_url>
