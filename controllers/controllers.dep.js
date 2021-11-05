@@ -14,6 +14,11 @@ exports.get_infos_by_dep = async function(req, res){
     /**
      * Permet de récupérer les information pour tout les départements
      */
+     try{
+        if(req.query['dep']==''){
+           return res.status(400).send("Erreur requête ! Spécifiez le département"); 
+       }
+
     let result = await functions.get_from_opendata('(dep_code%3D'+req.query['dep']+')','vac');
     let parse = await functions.parse_to(result.data,'xml')
     res.setHeader('Content-Type', 'text/json')
@@ -55,6 +60,9 @@ exports.get_infos_by_dep = async function(req, res){
     
 
     res.status(200).send(dict)
+}catch{
+    res.status(400).json("Veuillez préciser le paramètre du département (dep=...)");
+}
 }
 
 exports.get_number_recall = function(req, res){
