@@ -19,7 +19,7 @@ Requête 3 (sur les 2 jeux de données):
 - Récupérer plusieurs informations pertinentes sur les hospitalisations et la vaccination sur le département sélectionné.
 
 
-## Dev Helper
+## Dévoloppement du code
 ### Ajout d'une fonctionnalité
 Créer un fichier contenant une route dans le dossier route suivant le modèle index.js.
 Ajouter la route dans app.js
