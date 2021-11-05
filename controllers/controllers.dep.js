@@ -2,12 +2,6 @@ const functions = require('../public/javascript/fonction_share')
 const data_process = require('../public/javascript/process_data')
 const https = require('https');
 
-exports.test_promise_2 =async function(req, res){
-    console.log("Fonction : Promise 2 OK");
-    let result = await functions.get_from_opendata('(dep_code%3D'+req.query['dep']+')',' ');
-    res.status(200).send(result)
-}
-
 exports.get_infos_by_dep = async function(req, res){
     /**
      * Permet de récupérer les information pour tout les départements
