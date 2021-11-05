@@ -1,5 +1,6 @@
 const functions = require('../public/javascript/fonction_share')
 const data_process = require('../public/javascript/process_data')
+const dataTypeHandler = require("../public/javascript/convert")
 const https = require('https');
 
 exports.get_infos_by_dep = async function(req, res){
@@ -12,12 +13,12 @@ exports.get_infos_by_dep = async function(req, res){
        }
 
     let result = await functions.get_from_opendata('(dep_code%3D'+req.query['dep']+')','vac');
-    let parse = await functions.parse_to(result.data,'xml')
-    res.setHeader('Content-Type', 'text/json')
+    //let parse = await functions.parse_to(result.data,'xml')
+    //res.setHeader('Content-Type', 'text/json')
 
     let result1 = await functions.get_from_opendata('(dep_code%3D'+req.query['dep']+')',' ');
-    let parse1 = await functions.parse_to(result.data,'xml')
-    res.setHeader('Content-Type', 'text/json')
+    //let parse1 = await functions.parse_to(result.data,'xml')
+    //res.setHeader('Content-Type', 'text/json')
 
 
 
@@ -44,8 +45,14 @@ exports.get_infos_by_dep = async function(req, res){
     dict.data=dict1;
     dict1.vaccination=dict2;
     dict1.hospitalisation=dict3;
-
-    res.status(200).send(dict)
+    
+    try{
+        data = dataTypeHandler(dict, req.headers.accept, "vac")
+        res.setHeader('Content-Type', data["content-type"]);
+        res.status(200).send(data["data"])
+    }catch{
+        res.status(400).send("Erreur dans la conversion des données")
+    }
 
 }catch{
     res.status(400).json("Veuillez préciser le paramètre du département (dep=...)");

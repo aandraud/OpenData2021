@@ -1,5 +1,6 @@
 const functions = require('../public/javascript/fonction_share')
 const data_process = require('../public/javascript/process_data')
+const dataTypeHandler = require('../public/javascript/convert')
 const https = require('https');
 
 exports.get_number_vaccination_by_dep = async function(req, res){
@@ -20,7 +21,7 @@ exports.get_number_vaccination_by_dep = async function(req, res){
 
     try {
     let json={
-        "dep_id":req.query['dep'],
+        "dep_code":req.query['dep'],
         "dataset_id":result['data'][0].datasetid,
         "dep_name":result['data'][0].dep_name,
         "data" : []
@@ -39,10 +40,14 @@ exports.get_number_vaccination_by_dep = async function(req, res){
         return jObjt;
     });
     json['data']=data_clean;
+    try{
+        data = dataTypeHandler(json, req.headers.accept, "vac")
+        res.setHeader('Content-Type', data["content-type"]);
+        res.status(200).send(data["data"])
+    }catch{
+        res.status(400).send("Erreur dans la conversion des données")
+    }
 
-    let parse = await functions.parse_to(json,'xml')
-    res.setHeader('Content-Type', 'text/'+'json');
-    res.status(200).send(json)
     } catch {
         res.status(200).json('Désolé aucune données');
     }
