@@ -1,5 +1,6 @@
 {
     "dep_id":34,
+    "Trux":"xxx";
     "dep_name":"dep_name",
     "dataset_id":"covid-19-france-vaccinations-age-sexe-dep",
     "data" : [
