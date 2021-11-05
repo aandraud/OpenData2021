@@ -58,6 +58,13 @@ Si on tape https://opendata2021.herokuapp.com/dep/donnees_par_dep/?dep=  <-- il 
 
 Si on tape https://opendata2021.herokuapp.com/dep/donnees_par_dep/?dep=34 <-- l'affichage des données est fonctionnel
 
+Pour la requête 3:
+
+Si on tape https://opendata2021.herokuapp.com/dep/hospitalisation_par_dep/ <--- pas de paramètres donc erreur
+Si on tape https://opendata2021.herokuapp.com/dep/hospitalisation_par_dep/?dep=  <-- il y a bien un paramètre mais le numéro du département n'est pas spécifié donc erreur
+Si on tape https://opendata2021.herokuapp.com/dep/hospitalisation_par_dep/?dep=34 <-- l'affichage des données est fonctionnel
+
+
 ## Dévoloppement du code
 ### Ajout d'une fonctionnalité
 Créer un fichier contenant une route dans le dossier route suivant le modèle index.js.
