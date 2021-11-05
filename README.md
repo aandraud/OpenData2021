@@ -12,13 +12,17 @@ Nous avons 2 jeux de données sur la COVID-19 en France:
 Requête 1 (sur le jeu de données sur les vaccinations):
 - Taux de personnes ayant un schéma vaccinal complet (couv_complet, en %) dans le département sélectionné au jour J-2.
 
-Requête 2 (sur le jeu de données sur les hospitalisations):
+Requête 2 (sur le jeu de données sur les hospitalisations): https://opendata2021.herokuapp.com/hospitalisation/
 - Récupérer le nombre de patients en soins intensifs (day_intcare) parmi l'ensemble des patients hospitalisés (day_hosp) dans le département sélectionné au jour J-2 (données les plus récentes).
 
-Requête 3 (sur les 2 jeux de données):
+Requête 3 (sur les 2 jeux de données): https://opendata2021.herokuapp.com/dep/
 - Récupérer plusieurs informations pertinentes sur les hospitalisations et la vaccination sur le département sélectionné au jour J-2 (données les plus récentes).
 
-
+## Gestion des erreurs
+Pour la requête 2: 
+Si on tape https://opendata2021.herokuapp.com/dep/donnees_par_dep/ <--- pas de paramètres donc erreur
+Si on tape https://opendata2021.herokuapp.com/dep/donnees_par_dep/?dep=  <-- il y a bien un paramètre mais le de numéro de département n'est pas spécifié donc erreur
+Si on tape https://opendata2021.herokuapp.com/dep/donnees_par_dep/?dep=34 <-- l'affichage des données est fonctionnel
 ## Dévoloppement du code
 ### Ajout d'une fonctionnalité
 Créer un fichier contenant une route dans le dossier route suivant le modèle index.js.
