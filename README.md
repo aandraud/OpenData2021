@@ -25,6 +25,13 @@ Paramètres :
 | ------- | --- | --- |
 | Paramètre | Int | choix(sex/age) |
 
+#### Gestion Erreur
+
+L'erreur est attrapée et gérée par notre API en envoyant dans tous les cas une réponse au client :
+
+- vaccination/vaccination_par_dep/ > Pas de paramètres
+- vaccination/vaccination_par_dep/?dep= > Il y a un paramètre mais la valeur du paramètre n'est pas spécifié
+- vaccination/vaccination_par_dep/?dep=34 > Affichage des données
 
 ### Hospitalisation :
 
