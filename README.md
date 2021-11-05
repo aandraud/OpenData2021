@@ -23,6 +23,10 @@ Paramètres :
 
 **| Tables | Are | Cool | |----------|:-------------:|------:| | col 1 is| left-aligned | $1600 |**
 
+| Attempt | #1  | #2  |
+| ------- | --- | --- |
+| Seconds | 301 | 283 |
+
 
 
 
