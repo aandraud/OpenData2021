@@ -25,7 +25,7 @@ function convertData(data, headersTypeAcepted, reqType){
       contentType = "application/xml"
       //console.dirxml(data)
     }
-    return {"data":data, "content_type":contentType}
+    return {"data":data, "content-type":contentType}
 };
 
 function to_RDF(data, reqType){

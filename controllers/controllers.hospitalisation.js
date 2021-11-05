@@ -1,4 +1,5 @@
 const functions = require('../public/javascript/fonction_share')
+const contentTypeHandler = require('../public/javascript/convert')
 const data_process = require('../public/javascript/process_data')
 const https = require('https');
 
@@ -20,11 +21,8 @@ exports.get_number_hospitalisation_by_dep = async function(req, res){
         return res.status(400).send("Erreur requête ! Spécifiez le département"); 
     }
 
-
     let result = await functions.get_from_opendata('(dep_code%3D'+req.query['dep']+')',' ');
-    let parse = await functions.parse_to(result.data)
-    res.setHeader('Content-Type', 'text/json')
-
+    //let parse = await functions.parse_to(result.data)
 
     var dict={};
     var dict1={};
@@ -37,7 +35,10 @@ exports.get_number_hospitalisation_by_dep = async function(req, res){
 
     dict.data=dict1;
 
-    res.status(200).send(dict);
+    data = contentTypeHandler.convertData(dict, req.headers.accept, "hosp")
+    res.setHeader('Content-Type', data["content-type"])
+    res.status(200).send(data["data"]);
+    
 }catch{
     res.status(400).json("Veuillez préciser le paramètre du département (dep=...)");
 }
