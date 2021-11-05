@@ -9,6 +9,21 @@ Nous avons 2 jeux de données sur la COVID-19 en France:
 
 ## Requêtes
 
+### Vaccination :
+
+#### Requête : Données sur l'état de l'art du schéma vaccinal complet (2 doses) selon deux variables peuvent être selectionnées sexe et l'age
+
+- **Exemple de la route : vaccination/vaccination_par_dep?dep=34&variable=age**
+
+Paramètres : 
+
+| Variable souhaitée | dep | variable  |
+| ------- | --- | --- |
+| Paramètre | Int | choix(sex/age) |
+
+
+
+
 Requête 1 (sur le jeu de données sur les vaccinations):
 - Taux de personnes ayant un schéma vaccinal complet (couv_complet, en %) dans le département sélectionné au jour J-2.
 
