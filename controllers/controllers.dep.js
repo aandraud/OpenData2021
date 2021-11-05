@@ -2,7 +2,6 @@ const functions = require('../public/javascript/fonction_share')
 const data_process = require('../public/javascript/process_data')
 const https = require('https');
 
-
 exports.get_infos_by_dep = async function(req, res){
     /**
      * Permet de récupérer les information pour tout les départements
@@ -47,6 +46,7 @@ exports.get_infos_by_dep = async function(req, res){
     dict1.hospitalisation=dict3;
 
     res.status(200).send(dict)
+
 }catch{
     res.status(400).json("Veuillez préciser le paramètre du département (dep=...)");
 }

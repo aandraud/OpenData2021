@@ -1,0 +1,62 @@
+@<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+        xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+>
+
+<!--Class definition Statistique-->
+<rdf:Class rdf:about="#Statistique">
+    <rdfs:label xml:lang="fr">Statistique</rdfs:label>
+    <rdfs:comment xml:lang="fr">Statistique est un objet qui spécifie une stat. </rdfs:comment>
+</rdf:Class>
+
+<rdf:Class rdf:about="#Count">
+    <rdfs:label xml:lang="fr">Count</rdfs:label>
+    <rdfs:comment xml:lang="fr">Count est un objet qui spécifie un nombre. </rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Statistique"/>
+</rdf:Class>
+
+<rdf:Class rdf:about="#Taux">
+    <rdfs:label xml:lang="fr">Taux</rdfs:label>
+    <rdfs:comment xml:lang="fr">Taux est un objet qui spécifie un pourcentage. </rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Statistique"/>
+</rdf:Class>
+
+
+    <!--Property Definition for Statistique keyword-->
+
+<rdf:Property rdf:about="#keyword">
+    <rdfs:label xml:lang="fr">has_keyword</rdfs:label>
+    <rdfs:comment xml:lang="fr"> Retourne le keyword</rdfs:comment>
+    <rdfs:domain rdf:resource="#Statistique"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</rdf:Property>
+
+
+<rdf:Property rdf:about="#date">
+    <rdfs:label xml:lang="fr">date</rdfs:label>
+    <rdfs:comment xml:lang="fr"> Retourne la date</rdfs:comment>
+    <rdfs:domain rdf:resource="#Statistique"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+</rdf:Property>
+
+    <!--Property Definition for Count-->
+<rdf:Property rdf:about="#Count">
+    <rdfs:label xml:lang="fr">has_count</rdfs:label>
+    <rdfs:comment xml:lang="fr"> Compte le nombre d'items</rdfs:comment>
+    <rdfs:domain rdf:resource="#Count"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+</rdf:Property>
+
+    <!--Property Definition for taux-->
+
+<rdf:Property rdf:about="#Taux">
+    <rdfs:label xml:lang="fr">has_rate</rdfs:label>
+    <rdfs:comment xml:lang="fr">Envoie le taux</rdfs:comment>
+    <rdfs:domain rdf:resource="#Taux"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+</rdf:Property>
+
+
+</rdf:RDF>
