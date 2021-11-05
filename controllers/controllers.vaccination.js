@@ -16,10 +16,8 @@ exports.get_number_vaccination_by_dep = async function(req, res){
         return res.status(400).send("Erreur requête ! Spécifiez les variables désirées : variable=(sex/age) & dep=int");
     }
     let request = "(dep_code%3D"+req.query['dep']+"+%26+variable%3D"+variable+")"
-    console.log(request);
     let result = await functions.get_from_opendata(request,'vac');
 
-    try {
     let json={
         "dep_id":req.query['dep'],
         "dataset_id":result['data'][0].datasetid,
@@ -40,11 +38,8 @@ exports.get_number_vaccination_by_dep = async function(req, res){
         return jObjt;
     });
     json['data']=data_clean;
-    } catch {
-        json=[]
-    }
 
-    let parse = await functions.parse_to(json.data,'xml')
+    let parse = await functions.parse_to(json,'xml')
     res.setHeader('Content-Type', 'text/'+'json');
     res.status(200).send(json)
 }
