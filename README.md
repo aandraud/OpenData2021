@@ -40,10 +40,10 @@ Paramètres :
 
 #### Gestion Erreur
 
-L'erreur est attrapée est gérée par notre api en envoyant dans tous les cas une réponse au client, quelques cas d'espèces :
+L'erreur est attrapée et gérée par notre API en envoyant dans tous les cas une réponse au client :
 
 - hospitalisation/hospitalisation_par_dep/ > Pas de paramètres
-- hospitalisation/hospitalisation_par_dep/?dep= > Il y a un paramètre mais le numéro du département n'est pas spécifié
+- hospitalisation/hospitalisation_par_dep/?dep= > Il y a un paramètre mais la valeur du paramètre n'est pas spécifié
 - hospitalisation/hospitalisation_par_dep/?dep=34 > Affichage des données
 
 
@@ -60,16 +60,21 @@ Paramètres :
 | Paramètre | Int
 
 
-## Gestion des erreurs
+#### Gestion Erreur
 
-### Pour la requête 3:
+L'erreur est attrapée et gérée par notre API en envoyant dans tous les cas une réponse au client :
 
-Si on tape https://opendata2021.herokuapp.com/dep/hospitalisation_par_dep/ <--- pas de paramètres donc erreur
+- dep/donnees_par_dep/ > Pas de paramètres
+- dep/donnees_par_dep/?dep= > Il y a un paramètre mais la valeur du paramètre n'est pas spécifié
+- dep/donnees_par_dep/?dep=34 > Affichage des données
 
-Si on tape https://opendata2021.herokuapp.com/dep/hospitalisation_par_dep/?dep=  <-- il y a bien un paramètre mais le numéro du département n'est pas spécifié donc erreur
 
-Si on tape https://opendata2021.herokuapp.com/dep/hospitalisation_par_dep/?dep=34 <-- l'affichage des données est fonctionnel
+## Modules utilisés
 
+- "express": "^4.17.1" > framework standard pour le développement de serveur en Node.js
+- "https": "^1.0.0" > permet de faire des requêtes https
+- "js2xmlparser": "^4.0.2" > permet de convertir un JSON en XML
+- "xml-js": "^1.6.11" > permet de convertir un XML en JSON
 
 ## Dévoloppement du code
 ### Ajout d'une fonctionnalité
