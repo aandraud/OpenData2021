@@ -7,6 +7,9 @@ Nous avons 2 jeux de données sur la COVID-19 en France:
 1. un premier concernant les vaccinations effectuées par département. (source: https://public.opendatasoft.com/explore/dataset/covid-19-france-vaccinations-age-sexe-dep/api/?disjunctive.variable_label&sort=date)
 2. un second concernant les hospitalisations liées à la COVID-19 par département. (source: https://public.opendatasoft.com/explore/dataset/donnees-hospitalieres-covid-19-dep-france/api/?disjunctive.countrycode_iso_3166_1_alpha3&disjunctive.nom_dep_min)
 
+Serveur de l'application = heroku
+https://opendata2021.herokuapp.com/
+
 ## Requêtes
 
 ### Vaccination :
@@ -25,7 +28,7 @@ Paramètres :
 
 ### Hospitalisation :
 
-#### Requête : Données sur le nombre de patients en soins intensifs (day_intcare) parmi l'ensemble des patients hospitalisés (day_hosp) dans le département sélectionné au jour J-2 (données les plus récentes). URL: https://opendata2021.herokuapp.com/hospitalisation/
+#### Requête : Données sur le nombre de patients en soins intensifs (day_intcare) parmi l'ensemble des patients hospitalisés (day_hosp) dans le département sélectionné au jour J-2 (données les plus récentes).
 
 - **Exemple de la route : hospitalisation/hospitalisation_par_dep?dep=34**
 
@@ -35,10 +38,18 @@ Paramètres :
 | ------- | ---
 | Paramètre | Int
 
+#### Gestion Erreur
+
+L'erreur est attrapée est gérée par notre api en envoyant dans tous les cas une réponse au client, quelques cas d'espèces :
+
+- hospitalisation/hospitalisation_par_dep/ > Pas de paramètres
+- hospitalisation/hospitalisation_par_dep/?dep= > Il y a un paramètre mais le numéro du département n'est pas spécifié
+- hospitalisation/hospitalisation_par_dep/?dep=34 > Affichage des données
+
 
 ### Fusion des 2 jeux de données :
 
-#### Requête : Données pertinentes sur les hospitalisations et la vaccination sur le département sélectionné au jour J-2 (données les plus récentes). URL: https://opendata2021.herokuapp.com/dep/
+#### Requête : Données pertinentes sur les hospitalisations et la vaccination sur le département sélectionné au jour J-2 (données les plus récentes). 
 
 - **Exemple de la route : dep/dep_par_dep?dep=34**
 
@@ -50,14 +61,6 @@ Paramètres :
 
 
 ## Gestion des erreurs
-
-### Pour la requête 2: 
-
-Si on tape https://opendata2021.herokuapp.com/dep/donnees_par_dep/ <--- pas de paramètres donc erreur
-
-Si on tape https://opendata2021.herokuapp.com/dep/donnees_par_dep/?dep=  <-- il y a bien un paramètre mais le numéro du département n'est pas spécifié donc erreur
-
-Si on tape https://opendata2021.herokuapp.com/dep/donnees_par_dep/?dep=34 <-- l'affichage des données est fonctionnel
 
 ### Pour la requête 3:
 
