@@ -15,6 +15,7 @@ exports.get_from_opendata = async function(request,database){
     let url = url_creation(request,database);
     return new Promise((resolve)=>{
         https.get(url, res =>{
+            res.setEncoding('utf-8') // A surveiller
             let data = "";
             res.on('data', chunk => { data += chunk });
             res.on('end',()=>{
@@ -32,7 +33,7 @@ exports.parse_to= function(data, type) {
     return new Promise(resolve => {
         var options = {compact: true, ignoreComment: true, spaces: 4};
         var result = xmlJ.json2xml(data, options);
-        resolve(result);
+        resolve({"type": type, "data":result});
     })
 }
 
@@ -46,10 +47,7 @@ exports.get_file_type_requested = function (header_object) {
     var content_type;
 }
 
-exports.set_header = function() {
-    //
-}
-
+/*
 exports.getJSON = function(option){
     console.log('rest::getJson');
     let req = https.get(option, (resp)=>{
@@ -71,3 +69,4 @@ exports.getJSON = function(option){
         })
     })
 }
+*/
