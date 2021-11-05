@@ -13,7 +13,7 @@ Nous avons 2 jeux de données sur la COVID-19 en France:
 
 #### Requête : Données sur l'état de l'art du schéma vaccinal complet (2 doses) selon deux variables peuvent être selectionnées sexe et l'age
 
-- Exemple de la route : vaccination/vaccination_par_dep?dep=34&variable=age
+- **Exemple de la route : vaccination/vaccination_par_dep?dep=34&variable=age**
 
 Paramètres : 
 
