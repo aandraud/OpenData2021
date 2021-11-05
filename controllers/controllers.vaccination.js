@@ -18,6 +18,7 @@ exports.get_number_vaccination_by_dep = async function(req, res){
     let request = "(dep_code%3D"+req.query['dep']+"+%26+variable%3D"+variable+")"
     let result = await functions.get_from_opendata(request,'vac');
 
+    try {
     let json={
         "dep_id":req.query['dep'],
         "dataset_id":result['data'][0].datasetid,
@@ -42,6 +43,9 @@ exports.get_number_vaccination_by_dep = async function(req, res){
     let parse = await functions.parse_to(json,'xml')
     res.setHeader('Content-Type', 'text/'+'json');
     res.status(200).send(json)
+    } catch {
+        res.status(200).json('Désolé aucune données');
+    }
 }
 
 exports.get_number_vaccination_national = async function(req,res){
