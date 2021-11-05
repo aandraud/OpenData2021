@@ -29,9 +29,9 @@ Paramètres :
 
 L'erreur est attrapée et gérée par notre API en envoyant dans tous les cas une réponse au client :
 
-- vaccination/vaccination_par_dep/ > Pas de paramètres
-- vaccination/vaccination_par_dep/?dep= > Il y a un paramètre mais la valeur du paramètre n'est pas spécifié
-- vaccination/vaccination_par_dep/?dep=34 > Affichage des données
+- vaccination/vaccination_par_dep > Pas de paramètres
+- vaccination/vaccination_par_dep?dep= > Il y a un paramètre mais la valeur du paramètre n'est pas spécifié
+- vaccination/vaccination_par_dep?dep=34 > Affichage des données
 
 ### Hospitalisation :
 
@@ -49,9 +49,9 @@ Paramètres :
 
 L'erreur est attrapée et gérée par notre API en envoyant dans tous les cas une réponse au client :
 
-- hospitalisation/hospitalisation_par_dep/ > Pas de paramètres
-- hospitalisation/hospitalisation_par_dep/?dep= > Il y a un paramètre mais la valeur du paramètre n'est pas spécifié
-- hospitalisation/hospitalisation_par_dep/?dep=34 > Affichage des données
+- hospitalisation/hospitalisation_par_dep > Pas de paramètres
+- hospitalisation/hospitalisation_par_dep?dep= > Il y a un paramètre mais la valeur du paramètre n'est pas spécifié
+- hospitalisation/hospitalisation_par_dep?dep=34 > Affichage des données
 
 
 ### Fusion des 2 jeux de données :
