@@ -7,7 +7,6 @@ const PORT = process.env.PORT || 3000 ;
 
 // add router
 
-app.use("/mortalite",require('./routes/mortalite'))
 
 app.use('/vaccination', require('./routes/routes.vaccination'))
 

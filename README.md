@@ -16,13 +16,10 @@ Requête 2 (sur le jeu de données sur les hospitalisations):
 - Nombre de patients en soins intensifs (day_intcare) parmi l'ensemble des patients hospitalisés (day_hosp) dans le département sélectionné au jour J-2.
 
 Requête 3 (sur les 2 jeux de données):
-- Evolution du taux de vaccination et du taux d'hospitalisations dans le département sélectionné depuis janvier 2021.
-
-Requête 4 (sur les 2 jeux de données):
 - Récupérer plusieurs informations pertinentes sur les hospitalisations et la vaccination sur le département sélectionné.
 
 
-## Dev Helper
+## Dévoloppement du code
 ### Ajout d'une fonctionnalité
 Créer un fichier contenant une route dans le dossier route suivant le modèle index.js.
 Ajouter la route dans app.js
