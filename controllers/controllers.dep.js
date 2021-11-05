@@ -36,7 +36,6 @@ exports.get_infos_by_dep = async function(req, res){
 
     dict.day_intcare_new= result1.data[0].fields.day_intcare_new;
     dict.day_hosp_new= result1.data[0].fields.day_hosp_new;
-    dict.nom_dep_min= result1.data[0].fields.nom_dep_min;
     dict.day_death_new= result1.data[0].fields.day_death_new;
     dict.day_hosp=result1.data[0].fields.day_hosp;
     dict.day_intcare= result1.data[0].fields.day_intcare;
