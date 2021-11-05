@@ -7,7 +7,6 @@ router.get('/nombre_hospi/', controller.get_number_recall);
 
 router.get('/hospitalisation_par_dep',controller.get_number_hospitalisation_by_dep)
 
-router.get('/test/', controller.test_promise_2);
 
 router.get('',(req, res)=>{
     res.setHeader('Content-type','text/html')
