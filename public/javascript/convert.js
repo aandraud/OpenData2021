@@ -9,22 +9,18 @@ function convertData(data, headersTypeAcepted, reqType){
   // Returns:
   // Dictionary with data and content-type informations
 
-    const xmlRegex = new RegExp('\/xml')
-    const xmlrdfRegex = new RegExp('rdf')
-    
-    let contentType = "application/json" //default content type
-    //newData = JSON.parse(data)
+    const xmlRegex = new RegExp('\/xml');
+    const xmlrdfRegex = new RegExp('rdf');
+    let contentType = "application/json"; //default content type
 
     if (xmlrdfRegex.test(headersTypeAcepted)){
-      data = to_RDF(data, reqType)
-      contentType = "application/rdf+xml"
-      //console.dirxml(data)
+      data = to_RDF(data, reqType);
+      contentType = "application/rdf+xml";
     }
     else if (xmlRegex.test(headersTypeAcepted)){
-      data = js2xmlparser.parse("result", data)
-      contentType = "application/xml"
-      //console.dirxml(data)
-    }
+      data = js2xmlparser.parse("result", data);
+      contentType = "application/xml";
+    };
     return {"data":data, "content-type":contentType}
 };
 
@@ -32,8 +28,8 @@ function to_RDF(data, reqType){
   if (reqType == "vac") { return vaccination_to_RDF(data)}
   else if (reqType == "hosp") { return hospitalisation_to_RDF(data)}
   else if (reqType == "both") {return hosp_vacc_to_RDF(data)}
-  else {console.log("Error: Please select 'vac' 'hosp' or 'both' value for reqType parameter")}
-}
+  else {console.log("Error: Please select 'vac' 'hosp' or 'both' value for reqType parameter")};
+};
 
 function rdf (body) {
  return `<rdf:RDF 
@@ -42,7 +38,7 @@ function rdf (body) {
     xlmns:covidstats=':https://opendata2021.herokuapp.com/public/rdf/rdf_vocab'>
       ${body}
     </rdf>`
-}
+};
 
 vaccination_to_RDF = function (resp){
   body = `<igeo:Departement igeo:codeDepartement="${resp["dep_code"]}" igeo:nom="${resp["dep_name"]}">
@@ -52,7 +48,7 @@ vaccination_to_RDF = function (resp){
   </covidstats:has_statistique>
   </igeo:Departement>`
   return rdf(body)
-}
+};
 
 hospitalisation_to_RDF = function(resp){
   body = `<igeo:Departement igeo:codeDepartement="${resp["dep_code"]}" igeo:nom="${resp["dep_name"]}">
@@ -62,7 +58,7 @@ hospitalisation_to_RDF = function(resp){
   </covidstats:has_statistique>
 </igeo:Departement>`
 return rdf(body)
-}
+};
 
 hosp_vacc_to_RDF = function(resp){
 body = `  <igeo:Departement igeo:codeDepartement="${resp["dep_code"]}" igeo:nom="${resp["dep_name"]}">
@@ -79,7 +75,7 @@ body = `  <igeo:Departement igeo:codeDepartement="${resp["dep_code"]}" igeo:nom=
         </covidstats:from_url>
 </covidstats:has_statistique>
 </igeo:Departement>`
-return rdf(body)
+return rdf(body);
 }
 
-module.exports = convertData
+module.exports = convertData;
