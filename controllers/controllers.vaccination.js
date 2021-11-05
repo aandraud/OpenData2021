@@ -6,9 +6,21 @@ exports.get_number_vaccination_by_dep = async function(req, res){
     /**
      * Permet de récupérer les information pour tout les départements
      */
+    let variable;
+    if(req.query['variable']=="sex"){
+        variable = req.query['variable'];
+    } else if( req.query['variable']=="age" ) {
+        variable = "tranche"
+    } else {
+        res.setHeader('Content-Type', 'text/json');
+        return res.status(400).send("Erreur requête ! Spécifiez les variables désirées : variable=(sex/age) & dep=int");
+    }
+    let request = "(dep_code%3D"+req.query['dep']+"+%26+variable%3D"+variable+")"
+    console.log(request);
+    let result = await functions.get_from_opendata(request,'vac');
 
-    console.log(req.get('content-type'));// Liste de fonction application et tout.
-    let result = await functions.get_from_opendata('(dep_code%3D'+req.query['dep']+')','vac');
+    console.log(result['data']);
+
     let json={
         "dep_id":req.query['dep'],
         "data" : []
@@ -20,6 +32,8 @@ exports.get_number_vaccination_by_dep = async function(req, res){
         jObjt['n_cum_d2']=obj.fields.n_cum_complet;
         jObjt['couv_complet'] = obj.fields.couv_complet;
         jObjt['date'] = obj.fields.date;
+        jObjt['variable'] = obj.fields.variable;
+        jObjt['variable_label'] = obj.fields.variable_label;
         //console.log("Nouvelle entrée", obj.fields.n_cum_rappel);
         //json["data"].push(jObjt)
         return jObjt;
@@ -30,26 +44,3 @@ exports.get_number_vaccination_by_dep = async function(req, res){
     res.setHeader('Content-Type', 'text/'+parse.type);
     res.status(200).send(parse.data)
 }
-
-/*
-exports.get_number_recall = function(req, res){
-    // configuration Header
-    set_content_type = 'json'
-    res.setHeader('Content-Type', 'text/'+set_content_type);
-    console.log(req.headers['accept-language']);
-    console.log(req);
-
-    request_info=req.query;
-    let variable_query;
-    if(request_info.variable == '' ){
-        res.status(406).send('Rejet de la requête ! Spécifiez entre sexe = ["homme","femme"] et tous ages = ["age"]');
-    } else if(request_info.variable == "homme" || request_info.variable =="femme" ) {
-        variable_query=request_info.variable
-    } else if (request_info.variable == 'tous') {
-        variable_query = request_info.variable 
-    } else {
-        res.status(406).send('Rejet de la requête ! Spécifiez entre sexe = ["homme","femme"] et tous ages = ["age"]');
-    }
-
-}
-*/
