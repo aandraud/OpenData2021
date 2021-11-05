@@ -25,22 +25,28 @@ exports.get_infos_by_dep = async function(req, res){
 
 
     var dict={};
-    dict.n_cum_dose1= result.data[0].fields.n_cum_dose1;
-    dict.day_couve_dose1= result.data[0].fields.couv_dose1;
+    var dict1={};
+    var dict2={};
+    var dict3={};
+    dict2.n_cum_dose1= result.data[0].fields.n_cum_dose1;
+    dict2.day_couve_dose1= result.data[0].fields.couv_dose1;
+    dict.dep_code= result.data[0].fields.dep_code;
     dict.dep_name= result.data[0].fields.dep_name;
     dict.reg_name= result.data[0].fields.reg_name;
-    dict.date=result.data[0].fields.date;
-    dict.n_cum_complet= result.data[0].fields.n_cum_complet;
-    dict.couv_complet= result.data[0].fields.couv_complet;
-    dict.dep_code= result.data[0].fields.dep_code;
+    dict1.date=result.data[0].fields.date;
+    dict2.n_cum_complet= result.data[0].fields.n_cum_complet;
+    dict2.couv_complet= result.data[0].fields.couv_complet;
 
-    dict.day_intcare_new= result1.data[0].fields.day_intcare_new;
-    dict.day_hosp_new= result1.data[0].fields.day_hosp_new;
-    dict.day_death_new= result1.data[0].fields.day_death_new;
-    dict.day_hosp=result1.data[0].fields.day_hosp;
-    dict.day_intcare= result1.data[0].fields.day_intcare;
-    dict.tot_out= result1.data[0].fields.tot_out;
-    dict.tot_death= result1.data[0].fields.tot_death;
+    dict3.day_intcare_new= result1.data[0].fields.day_intcare_new;
+    dict3.day_hosp_new= result1.data[0].fields.day_hosp_new;
+    dict3.day_death_new= result1.data[0].fields.day_death_new;
+    dict3.day_hosp=result1.data[0].fields.day_hosp;
+    dict3.day_intcare= result1.data[0].fields.day_intcare;
+    dict3.tot_out= result1.data[0].fields.tot_out;
+    dict3.tot_death= result1.data[0].fields.tot_death;
+    dict.data=dict1;
+    dict1.vaccination=dict2;
+    dict1.hospitalisation=dict3;
 
 
 

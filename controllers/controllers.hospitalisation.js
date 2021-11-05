@@ -18,11 +18,15 @@ exports.get_number_hospitalisation_by_dep = async function(req, res){
     let parse = await functions.parse_to(result.data)
     res.setHeader('Content-Type', 'text/json')
     var dict={};
-    dict.nom_dep_min= result.data[0].fields.nom_dep_min;
-    dict.day_hosp= result.data[0].fields.day_hosp;
-    dict.day_intcare= result.data[0].fields.day_intcare;
+    var dict1={};
     dict.dep_code= result.data[0].fields.dep_code;
-    dict.date=result.data[0].fields.date;
+    dict.dep_name= result.data[0].fields.nom_dep_min;
+
+
+    dict1.day_hosp= result.data[0].fields.day_hosp;
+    dict1.day_intcare= result.data[0].fields.day_intcare;
+    dict1.date=result.data[0].fields.date;
+    dict.data=dict1;
    
    
 
