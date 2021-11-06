@@ -11,7 +11,7 @@ Un troisième jeu de données sur les températures départementales provenant d
 
 Nous avons choisi ces 3 jeux de données pour voir s'il y avait des corrélations, dans le cadre de la COVID-19 pour chaque département, entre les vaccinations et les hospitalisations et entre les hospitalisations et la température moyenne du département. 
 
-Le serveur de l'application est heroku: https://opendata2021.herokuapp.com/
+Le serveur de l'application est heroku.
 
 
 
