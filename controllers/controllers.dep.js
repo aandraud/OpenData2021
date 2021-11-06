@@ -22,12 +22,12 @@ exports.get_infos_by_dep = async function(req, res){
 
     let result2 = await functions.get_from_opendata('(code_insee_departement%3D'+req.query['dep']+')','temp');
     
-    console.log(result2.data.records);
 
     var dict={};
     var dict1={};
     var dict2={};
     var dict3={};
+    var dict4={};
     dict2.n_cum_dose1= result.data.records[0].fields.n_cum_dose1;
     dict2.day_couve_dose1= result.data.records[0].fields.couv_dose1;
     dict.dep_code= result.data.records[0].fields.dep_code;
@@ -36,6 +36,7 @@ exports.get_infos_by_dep = async function(req, res){
     dict1.date=result.data.records[0].fields.date;
     dict2.n_cum_complet= result.data.records[0].fields.n_cum_complet;
     dict2.couv_complet= result.data.records[0].fields.couv_complet;
+    dict4.temp_moy=result2.data.records[0].fields.tmoy;
 
     dict3.day_intcare_new= result1.data.records[0].fields.day_intcare_new;
     dict3.day_hosp_new= result1.data.records[0].fields.day_hosp_new;
@@ -47,6 +48,7 @@ exports.get_infos_by_dep = async function(req, res){
     dict.data=dict1;
     dict1.vaccination=dict2;
     dict1.hospitalisation=dict3;
+    dict1.temperature=dict4;
     
     try{
         data = dataTypeHandler(dict, req.headers.accept, "vac")
