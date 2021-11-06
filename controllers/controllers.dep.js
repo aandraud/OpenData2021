@@ -20,7 +20,9 @@ exports.get_infos_by_dep = async function(req, res){
     //let parse1 = await functions.parse_to(result.data,'xml')
     //res.setHeader('Content-Type', 'text/json')
 
-
+    let result2 = await functions.get_from_opendata('(code_insee_departement%3D'+req.query['dep']+')','temp');
+    
+    console.log(result2.data.records);
 
     var dict={};
     var dict1={};
