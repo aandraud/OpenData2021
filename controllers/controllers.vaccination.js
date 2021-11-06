@@ -1,10 +1,10 @@
 const functions = require('../public/javascript/fonction_share')
-
 exports.get_number_vaccination_national = async function(req,res){
     console.log(req.query);
     let result = await functions.get_from_opendata('','vac');
     res.status(200).send(result);
 }
+
 
 exports.get_number_vaccination_by_dep = async function(req, res){
     /**
@@ -31,7 +31,6 @@ exports.get_number_vaccination_by_dep = async function(req, res){
         res.status(400).json("Oups, une erreur est arrivée")
     }
 }
-
 
 function json_head_creation(json){
     //console.log(json["records"]);
