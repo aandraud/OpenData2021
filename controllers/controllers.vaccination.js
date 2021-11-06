@@ -10,7 +10,7 @@ exports.get_number_vaccination_by_dep = async function(req, res){
     try {
         let result;
         let Type_Accepted = req.headers.accept;
-        if(Object.keys(req.query).length === 0){
+        if(Object.keys(req.params).length===0){
             // If query is empty > Send all data by date on every departement.
             result = await functions.get_from_opendata('variable_label%3D+et+Femmes','vac');
             // Data re-structured
@@ -23,14 +23,13 @@ exports.get_number_vaccination_by_dep = async function(req, res){
         } else {
             // If query is not empty
             //Query
-            let request = "(dep_code%3D"+req.query['dep']+"+%26+variable_label%3D+et+Femmes)";
+            let request = "(dep_code%3D"+req.params.id+"+%26+variable_label%3D+et+Femmes)";
             result = await functions.get_from_opendata(request,'vac');
             // Data re-structured
             result = json_head_creation(result.data);
-        
-        let convert = convertData(result, Type_Accepted,'vac')
-        res.setHeader('Content-Type', convert['content-type']);
-        res.status(200).send(convert.data)
+            let convert = convertData(result, Type_Accepted,'vac')
+            res.setHeader('Content-Type', convert['content-type']);
+            res.status(200).send(convert.data)
         }
     } catch {
         res.status(400).json("Oups, une erreur est arrivée")
