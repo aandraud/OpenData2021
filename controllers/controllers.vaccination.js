@@ -16,7 +16,7 @@ exports.get_number_vaccination_by_dep = async function(req, res){
             // Data re-structured
             result = json_head_creation(result.data);
             //Convert data according to wishing type.
-            let convert = convertData(result.data, Type_Accepted,'vac')
+            let convert = convertData(result, Type_Accepted,'vac')
             //Header respond and respond send to client
             res.setHeader('Content-Type',convert['content-type']);
             return res.status(200).send(convert.data);
@@ -28,7 +28,7 @@ exports.get_number_vaccination_by_dep = async function(req, res){
             // Data re-structured
             result = json_head_creation(result.data);
         
-        let convert = convertData(result.data, Type_Accepted,'vac')
+        let convert = convertData(result, Type_Accepted,'vac')
         res.setHeader('Content-Type', convert['content-type']);
         res.status(200).send(convert.data)
         }
