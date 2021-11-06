@@ -1,16 +1,6 @@
 const functions = require('../public/javascript/fonction_share');
 const convertData = require('../public/javascript/convert');
 
-exports.get_number_vaccination_national = async function(req,res){
-    let result = await functions.get_from_opendata('','vac');
-    let parse = json_head_creation(result.data);
-    xml = functions.parse_to(parse)
-    console.log(xml);
-    res.setHeader('Content-Type', 'text/'+'xml');
-    res.status(200).send("Hello");
-}
-
-
 exports.get_number_vaccination_by_dep = async function(req, res){
     /**
      * This function send back number of complete vaccinated person by french departement
