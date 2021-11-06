@@ -1,6 +1,4 @@
 const functions = require('../public/javascript/fonction_share')
-const data_process = require('../public/javascript/process_data')
-const https = require('https');
 
 exports.get_number_vaccination_national = async function(req,res){
     console.log(req.query);
