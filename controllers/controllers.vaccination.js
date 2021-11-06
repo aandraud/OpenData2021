@@ -1,40 +1,57 @@
 const functions = require('../public/javascript/fonction_share');
+const convertData = require('../public/javascript/convert');
 
 exports.get_number_vaccination_national = async function(req,res){
     let result = await functions.get_from_opendata('','vac');
-    result = json_head_creation(result.data)
-    res.status(200).send(result);
+    let parse = json_head_creation(result.data);
+    xml = functions.parse_to(parse)
+    console.log(xml);
+    res.setHeader('Content-Type', 'text/'+'xml');
+    res.status(200).send("Hello");
 }
 
 
 exports.get_number_vaccination_by_dep = async function(req, res){
     /**
-     * Cette fonction répond à la requête du nombre de personne par département.
+     * This function send back number of complete vaccinated person by french departement
      * dep : int
      * variable : string
      */
     try {
         let result;
+        let Type_Accepted = req.headers.accept;
         if(Object.keys(req.query).length === 0){
-            // Si la variable est vide > renvoie de l'ensemble des informations.
+            // If query is empty > Send all data by date on every departement.
             result = await functions.get_from_opendata('variable_label%3D+et+Femmes','vac');
-            return res.status(200).send(json_head_creation(result.data));
+            // Data re-structured
+            result = json_head_creation(result.data);
+            //Convert data according to wishing type.
+            let convert = convertData(result.data, Type_Accepted,'vac')
+            //Header respond and respond send to client
+            res.setHeader('Content-Type',convert['content-type']);
+            return res.status(200).send(convert.data);
         } else {
-            // Si la requête est supérieure à 0
+            // If query is not empty
+            //Query
             let request = "(dep_code%3D"+req.query['dep']+"+%26+variable_label%3D+et+Femmes)";
             result = await functions.get_from_opendata(request,'vac');
+            // Data re-structured
             result = json_head_creation(result.data);
+        
+        let convert = convertData(result.data, Type_Accepted,'vac')
+        res.setHeader('Content-Type', convert['content-type']);
+        res.status(200).send(convert.data)
         }
-        let parse = await functions.parse_to(result,'xml')
-        res.setHeader('Content-Type', 'text/'+'xml');
-        res.status(200).send(parse)
     } catch {
         res.status(400).json("Oups, une erreur est arrivée")
     }
 }
 
 function json_head_creation(json){
-    //console.log(json["records"]);
+    /**
+     * Return json object type match to project defined format
+     * json : json object
+     */
     file_json = {
         "dataset_id":json.parameters.dataset,
         "data" : []       
