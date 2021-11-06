@@ -5,12 +5,10 @@ const https = require('https');
 const { response } = require('express');
 
 
-
-
-exports.test_promise_2 =async function(req, res){
-    let result = await functions.get_from_opendata('(dep_code%3D'+req.query['dep']+')',' ');
-    res.status(200).send(result)
-}
+// exports.test_promise_2 =async function(req, res){
+//     let result = await functions.get_from_opendata('(dep_code%3D'+req.query['dep']+')',' ');
+//     res.status(200).send(result)
+// }
 
 
 exports.get_number_hospitalisation_by_dep = async function(req, res){
@@ -27,12 +25,12 @@ exports.get_number_hospitalisation_by_dep = async function(req, res){
 
     var dict={};
     var dict1={};
-    dict.dep_code= result.data[0].fields.dep_code;
-    dict.dep_name= result.data[0].fields.nom_dep_min;
+    dict.dep_code= result.data.records[0].fields.dep_code;
+    dict.dep_name= result.data.records[0].fields.nom_dep_min;
 
-    dict1.day_hosp= result.data[0].fields.day_hosp;
-    dict1.day_intcare= result.data[0].fields.day_intcare;
-    dict1.date=result.data[0].fields.date;
+    dict1.day_hosp= result.data.records[0].fields.day_hosp;
+    dict1.day_intcare= result.data.records[0].fields.day_intcare;
+    dict1.date=result.data.records[0].fields.date;
 
     dict.data=dict1;
 
