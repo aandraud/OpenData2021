@@ -86,6 +86,7 @@ L'erreur est attrapée et gérée par notre API en envoyant dans tous les cas un
 - "https": "^1.0.0" > permet de faire des requêtes https
 - "js2xmlparser": "^4.0.2" > permet de convertir un JSON en XML
 - "xml-js": "^1.6.11" > permet de convertir un XML en JSON
+- "fs": pour lire le fichier xml du vocabulaire rdf et l'afficher via une adresse
 
 
 
