@@ -21,7 +21,7 @@ Le serveur de l'application est heroku.
 
 #### Requête : Données sur le nombre de personne ayant un shéma vaccinal complet (Octobre 2021 : 2 doses) pour une département spécifié en paramètre ou sur l'ensemble du territoire français.
 
-- **Exemple de la route : **
+#### Exemple de la route :
 -  vaccination/vaccination_par_dep/(int)
 -  vaccination/vaccination_par_dep/
 
