@@ -12,17 +12,30 @@ function convertData(data, headersTypeAcepted, reqType){
     const xmlRegex = new RegExp('\/xml');
     const xmlrdfRegex = new RegExp('rdf');
     let contentType = "application/json"; //default content type
-
-    if (xmlrdfRegex.test(headersTypeAcepted)){
+  try{
+  if (xmlrdfRegex.test(headersTypeAcepted)){
+    try{
       data = to_RDF(data, reqType);
-      contentType = "application/rdf+xml";
+    }catch{
+      console.log("Erreur pendant la conversion en format RDF")
     }
+    contentType = "application/rdf+xml";
+  }
     else if (xmlRegex.test(headersTypeAcepted)){
-      data = js2xmlparser.parse("result", data);
+      try{
+        data = js2xmlparser.parse("result", data);
+
+      }catch{
+        console.log("Erreur pendant la conversion au format XML")
+      }
       contentType = "application/xml";
     };
+  }catch{
+    console.log("Erreur durant la conversion du format")
+  }
     return {"data":data, "content-type":contentType}
 };
+
 
 function to_RDF(data, reqType){
   if (reqType == "vac") { return vaccination_to_RDF(data)}
@@ -42,16 +55,16 @@ function rdf (body) {
 
 vaccination_to_RDF = function (resp){
   body = `<igeo:Departement igeo:codeDepartement="${resp["dep_code"]}" igeo:nom="${resp["dep_name"]}">
-  <covidstats:has_statistique>
-      <covidstats:Count covidstats:keyword="vaccination complete" covidstats:dateEffet="${resp["data"]["date"]}" covidstats:has_count="${resp["data"]["n_cum_complet"]}" />
-      <covidstats:Taux covidstats:keyword="vaccination complete" covidstats:dateEffet="${resp["data"]["date"]}" covidstats:has_rate="${resp["data"]["couv_complet"]}" />
+  <covidstats:has_statistique covidstats:from_url="${resp?.source.source_url}" covidstats:dataset_id="${resp?.source.dataset_id}">
+      <covidstats:Count covidstats:keyword="vaccination complete" covidstats:dateEffet="${resp?.data.date}" covidstats:has_count="${resp?.data.n_cum_complet}" />
+      <covidstats:Taux covidstats:keyword="vaccination complete" covidstats:dateEffet="${resp?.data.date}" covidstats:has_rate="${resp?.data.couv_complet}" />
   </covidstats:has_statistique>
   </igeo:Departement>`
   return rdf(body)
 };
 
 hospitalisation_to_RDF = function(resp){
-  body = `<igeo:Departement igeo:codeDepartement="${resp["dep_code"]}" igeo:nom="${resp["dep_name"]}">
+  body = `<igeo:Departement igeo:codeDepartement="${resp?.dep_code }" igeo:nom="${resp?.dep_name}">
   <covidstats:has_statistique>
       <covidstats:Count covidstats:keyword="hospitalisation" covidstats:dateEffet="${resp["data"]["date"]}" covidstats:has_count="${resp["data"]["day_hosp"]}" />
       <covidstats:Count covidstats:keyword="soin intensif" covidstats:dateEffet="${resp["data"]["date"]}" covidstats:has_count="${resp["data"]["day_intcare"]}" />
