@@ -19,23 +19,21 @@ Le serveur de l'application est heroku.
 
 ### Vaccination :
 
-#### Requête : Données sur le schéma vaccinal complet (2 doses) selon deux variables sélectionnées (sexe et âge) au jour J-2 (données les plus récentes).
+#### Requête : Données sur le nombre de personne ayant un shéma vaccinal complet (Octobre 2021 : 2 doses) pour une département spécifié en paramètre ou sur l'ensemble du territoire français.
 
-- **Exemple de la route : vaccination/vaccination_par_dep?dep=34&variable=age**
+- **Exemple de la route : 
+-  vaccination/vaccination_par_dep/(int)
+-  vaccination/vaccination_par_dep/
 
 Paramètres : 
 
-| Variable souhaitée | dep | variable  |
+| Variable souhaitée | dep |
 | ------- | --- | --- |
-| Paramètre | Int | choix(sex/age) |
+| Paramètre | Int |
 
 #### Gestion Erreur
 
-L'erreur est attrapée et gérée par notre API en envoyant dans tous les cas une réponse au client :
-
-- vaccination/vaccination_par_dep > Pas de paramètres
-- vaccination/vaccination_par_dep?dep= > Il y a un paramètre mais la valeur du paramètre n'est pas spécifié
-- vaccination/vaccination_par_dep?dep=34 > Affichage des données
+- Un catch renvoie une erreur si l'API à rencontré une erreur lors du traitement de la requête
 
 ### Hospitalisation :
 
@@ -86,7 +84,6 @@ L'erreur est attrapée et gérée par notre API en envoyant dans tous les cas un
 - "https": "^1.0.0" > permet de faire des requêtes https
 - "js2xmlparser": "^4.0.2" > permet de convertir un JSON en XML
 - "xml-js": "^1.6.11" > permet de convertir un XML en JSON
-- "fs": pour lire le fichier xml du vocabulaire rdf et l'afficher via une adresse
 
 
 
