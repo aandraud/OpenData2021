@@ -41,7 +41,8 @@ Paramètres :
 
 #### Requête : Données sur le nombre de patients en soins intensifs (day_intcare) parmi l'ensemble des patients hospitalisés (day_hosp) dans le département sélectionné au jour J-2 (données les plus récentes).
 
-- **Exemple de la route : hospitalisation/hospitalisation_par_dep?dep=34**
+#### Exemple de la route :
+- hospitalisation/hospitalisation_par_dep?dep=34
 
 Paramètres : 
 
