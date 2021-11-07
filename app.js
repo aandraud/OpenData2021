@@ -21,12 +21,13 @@ app.get('/rdf_vocab',(req,res) => {
       res.status(200).send("<textarea style='border: none; margin: 0px; width: 894px; height: 870px;'>"+ data + "</textarea>")
     });
   }
-  catch {
-    res.status(400).send("Erreur dans le chargement du fichier rdf")
+  catch(error) {
+    res.status(400).send("Erreur dans le chargement du fichier vocab rdf : " + error)
   }
 
 
 })
+
 
 app.listen(PORT, function () {
   console.log('API OpenData2021 démarrée sur le port:' + PORT);
