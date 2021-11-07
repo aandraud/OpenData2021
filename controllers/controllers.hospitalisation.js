@@ -16,7 +16,7 @@ exports.get_number_hospitalisation_by_dep = async function(req, res){
      * Permet de récupérer les information pour tout les départements
      */
     try{
-     if(req.query['dep']==''){
+     if(req.params.id==''){
         return res.status(400).send("Erreur requête ! Spécifiez le département"); 
     }
 
@@ -44,7 +44,7 @@ exports.get_number_hospitalisation_by_dep = async function(req, res){
 
 
 }catch{
-    res.status(400).json("Veuillez préciser le paramètre du département (dep=...)");
+    res.status(400).json("Veuillez préciser le code du département");
 }
 
 } 

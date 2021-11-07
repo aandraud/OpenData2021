@@ -59,7 +59,8 @@ exports.get_infos_by_dep = async function(req, res){
     }
 
 }catch{
-    res.status(400).json("Veuillez préciser le paramètre du département (dep=...)");
+    res.status(400).json("Veuillez préciser le code du département");
+    
 }
 }
 
