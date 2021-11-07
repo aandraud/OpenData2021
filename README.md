@@ -63,7 +63,8 @@ L'erreur est attrapée et gérée par notre API en envoyant dans tous les cas un
 
 #### Requête : Données pertinentes sur les hospitalisations, la vaccination et la température sur le département sélectionné au jour J-2 (données les plus récentes). 
 
-- **Exemple de la route : dep/dep_par_dep?dep=34**
+#### Exemple de la route :
+- dep/dep_par_dep?dep=34
 
 Paramètres : 
 
