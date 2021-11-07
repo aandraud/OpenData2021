@@ -5,7 +5,7 @@ const controller=require("../controllers/controllers.hospitalisation");
 
 router.get('/nombre_hospi/', controller.get_number_recall);
 
-router.get('/hospitalisation_par_dep',controller.get_number_hospitalisation_by_dep)
+router.get('/dep/:id',controller.get_number_hospitalisation_by_dep)
 
 
 router.get('',(req, res)=>{

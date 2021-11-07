@@ -3,9 +3,9 @@ const router = express.Router();
 
 const controller=require("../controllers/controllers.vaccination");
 
-router.get('/vaccination_par_dep/:id',controller.get_number_vaccination_by_dep)
+router.get('/dep/:id',controller.get_number_vaccination_by_dep)
 
-router.get('/vaccination_par_dep/',controller.get_number_vaccination_by_dep)
+router.get('/dep/',controller.get_number_vaccination_by_dep)
 
 router.get('/',(req, res)=>{
     res.setHeader('Content-type','text/html')

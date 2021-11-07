@@ -20,7 +20,7 @@ exports.get_number_hospitalisation_by_dep = async function(req, res){
         return res.status(400).send("Erreur requête ! Spécifiez le département"); 
     }
 
-    let result = await functions.get_from_opendata('(dep_code%3D'+req.query['dep']+')',' ');
+    let result = await functions.get_from_opendata('(dep_code%3D'+req.params.id+')',' ');
     //let parse = await functions.parse_to(result.data)
 
     var dict={};

@@ -3,9 +3,9 @@ const router = express.Router();
 
 const controller=require("../controllers/controllers.dep");
 
-router.get('/dep/', controller.get_number_recall);
+router.get('/nombre_dep/', controller.get_number_recall);
 
-router.get('/donnees_par_dep',controller.get_infos_by_dep)
+router.get('/:id',controller.get_infos_by_dep)
 
 router.get('',(req, res)=>{
     res.setHeader('Content-type','text/html')

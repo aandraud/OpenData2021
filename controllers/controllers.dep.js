@@ -8,19 +8,19 @@ exports.get_infos_by_dep = async function(req, res){
      * Permet de récupérer les information pour tout les départements
      */
      try{
-        if(req.query['dep']==''){
+        if(req.params.id==''){
            return res.status(400).send("Erreur requête ! Spécifiez le département"); 
        }
 
-    let result = await functions.get_from_opendata('(dep_code%3D'+req.query['dep']+')','vac');
+    let result = await functions.get_from_opendata('(dep_code%3D'+req.params.id+')','vac');
     //let parse = await functions.parse_to(result.data,'xml')
     //res.setHeader('Content-Type', 'text/json')
 
-    let result1 = await functions.get_from_opendata('(dep_code%3D'+req.query['dep']+')',' ');
+    let result1 = await functions.get_from_opendata('(dep_code%3D'+req.params.id+')',' ');
     //let parse1 = await functions.parse_to(result.data,'xml')
     //res.setHeader('Content-Type', 'text/json')
 
-    let result2 = await functions.get_from_opendata('(code_insee_departement%3D'+req.query['dep']+')','temp');
+    let result2 = await functions.get_from_opendata('(code_insee_departement%3D'+req.params.id+')','temp');
     
 
     var dict={};
