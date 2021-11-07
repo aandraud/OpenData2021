@@ -23,6 +23,12 @@
     <rdfs:subClassOf rdf:resource="#Statistique"/>
 </rdf:Class>
 
+<rdf:Class rdf:about="#Mean">
+    <rdfs:label xml:lang="fr">Mean</rdfs:label>
+    <rdfs:comment xml:lang="fr">Mean est un objet qui spécifie une moyenne. </rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Statistique"/>
+</rdf:Class>
+
 
     <!--Property Definition for Statistique keyword-->
 
@@ -39,6 +45,20 @@
     <rdfs:comment xml:lang="fr"> Retourne la date</rdfs:comment>
     <rdfs:domain rdf:resource="#Statistique"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+</rdf:Property>
+
+<rdf:Property rdf:about="#Statistique">
+    <rdfs:label xml:lang="fr">from_url</rdfs:label>
+    <rdfs:comment xml:lang="fr">URL de la donnée source</rdfs:comment>
+    <rdfs:domain rdf:resource="#Statistique"/>
+    <rdfs:range rdf:resource="http://purl.org/dc/terms/URI"/>
+</rdf:Property>
+
+<rdf:Property rdf:about="#Statistique">
+    <rdfs:label xml:lang="fr">dataset_id</rdfs:label>
+    <rdfs:comment xml:lang="fr">ID du jeu de données source</rdfs:comment>
+    <rdfs:domain rdf:resource="#Statistique"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
 </rdf:Property>
 
     <!--Property Definition for Count-->
@@ -58,5 +78,11 @@
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
 </rdf:Property>
 
-
+   <!--Property Definition for Mean-->
+<rdf:Property rdf:about="#Mean">
+    <rdfs:label xml:lang="fr">has_mean</rdfs:label>
+    <rdfs:comment xml:lang="fr">Envoie la moyenne</rdfs:comment>
+    <rdfs:domain rdf:resource="#Mean"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+</rdf:Property>
 </rdf:RDF>
