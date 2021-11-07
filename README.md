@@ -27,9 +27,9 @@ Le serveur de l'application est heroku.
 
 Paramètres : 
 
-| Variable souhaitée | dep 
-| ------- | --- | --- 
-| Paramètre | Int 
+| Variable souhaitée | dep
+| ------- | ---
+| Paramètre | Int
 
 #### Gestion Erreur
 
