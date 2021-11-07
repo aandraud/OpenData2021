@@ -35,7 +35,7 @@ Paramètres :
 
 #### Gestion Erreur
 
-- Un catch renvoie une erreur si l'API à rencontré une erreur lors du traitement de la requête
+- Un catch renvoie une erreur si l'API a rencontré une erreur lors du traitement de la requête.
 
 ### Hospitalisation :
 
