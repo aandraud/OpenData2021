@@ -13,12 +13,18 @@ app.use('/dep', require('./routes/routes.dep'))
 
 
 app.get('/rdf_vocab',(req,res) => {
-  fs.readFile(__dirname + '/public/rdf/rdf_vocab.xml', 'utf8', function (err,data) {
-    if (err) {
-      return console.log(err);
-    }
-    res.send("<textarea style='border: none; margin: 0px; width: 894px; height: 870px;'>"+ data + "</textarea>")
-  });
+  try{
+    fs.readFile(__dirname + '/public/rdf/rdf_vocab.xml', 'utf8', function (err,data) {
+      if (err) {
+        return console.log(err);
+      }
+      res.status(200).send("<textarea style='border: none; margin: 0px; width: 894px; height: 870px;'>"+ data + "</textarea>")
+    });
+  }
+  catch {
+    res.status(400).send("Erreur dans le chargement du fichier rdf")
+  }
+
 
 })
 
